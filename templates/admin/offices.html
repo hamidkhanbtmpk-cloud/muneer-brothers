@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+    body { background-color: #050505; color: white; font-family: 'Rajdhani', sans-serif; }
+    .admin-card { background: rgba(255,255,255,0.02); border: 1px solid #00f2fe; border-radius: 12px; padding: 25px; }
+    .form-control { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: white; }
+    .btn-neon { border: 2px solid #00f2fe; color: #00f2fe; background: transparent; font-weight: bold; }
+    .btn-neon:hover { background: #00f2fe; color: black; }
+</style>
+
+<div class="container mt-5">
+    <h2 style="font-family: 'Orbitron';" class="text-info mb-4">Manage Offices</h2>
+    <div class="row">
+        <div class="col-md-5">
+            <div class="admin-card">
+                <h5 class="mb-3">Add Command Center</h5>
+                <form method="POST">
+                    <div class="mb-3">
+                        <label class="small">Office Type</label>
+                        <input type="text" name="office_type" class="form-control" placeholder="e.g. HQ or Branch" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="small">Address</label>
+                        <textarea name="address" class="form-control" rows="3" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-neon w-100">Add Office</button>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div class="admin-card">
+                <h5 class="mb-3">Registered Locations</h5>
+                {% for off in offices %}
+                <div class="d-flex justify-content-between align-items-center border-bottom border-secondary py-2">
+                    <div>
+                        <h6 class="mb-0">{{ off.office_type }}</h6>
+                        <small class="text-secondary">{{ off.address }}</small>
+                    </div>
+                    <a href="{{ url_for('routes.delete_office', id=off.id) }}" class="btn btn-outline-danger btn-sm" onclick="return confirm('Remove?')">Remove</a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block content %}
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+<style>
+    body { background-color: #050505; color: white; font-family: 'Rajdhani', sans-serif; }
+    .admin-card { background: rgba(255,255,255,0.02); border: 1px solid #00f2fe; border-radius: 12px; padding: 25px; }
+    .form-control { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: white; }
+    .form-control:focus { background: rgba(255,255,255,0.1); border-color: #00f2fe; color: white; box-shadow: 0 0 10px rgba(0, 242, 254, 0.3); }
+    .btn-neon { border: 2px solid #00f2fe; color: #00f2fe; background: transparent; font-weight: bold; transition: 0.3s; }
+    .btn-neon:hover { background: #00f2fe; color: black; box-shadow: 0 0 15px #00f2fe; }
+    .service-item { background: rgba(255,255,255,0.03); border-radius: 8px; padding: 12px; margin-bottom: 10px; border-left: 3px solid #00f2fe; }
+</style>
+
+<div class="container mt-5 pt-4">
+    <h2 style="font-family: 'Orbitron';" class="text-info mb-4 text-uppercase">Service Command Center</h2>
+    
+    <div class="row">
+        <div class="col-md-5">
+            <div class="admin-card">
+                <h5 class="mb-4 text-info"><i class="bi bi-plus-circle me-2"></i>Deploy New Tech</h5>
+                <form method="POST" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label class="small text-uppercase fw-bold text-secondary">Service Title</label>
+                        <input type="text" name="title" class="form-control" placeholder="e.g. CCTV Surveillance" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="small text-uppercase fw-bold text-secondary">Tech Description</label>
+                        <textarea name="description" class="form-control" rows="4" placeholder="Briefly describe the technology..." required></textarea>
+                    </div>
+                    <div class="mb-4">
+                        <label class="small text-uppercase fw-bold text-secondary">Display Image (1200x800)</label>
+                        <input type="file" name="image" class="form-control" accept="image/*" required>
+                    </div>
+                    <button type="submit" class="btn btn-neon w-100 py-2">ACTIVATE SERVICE</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-md-7">
+            <div class="admin-card">
+                <h5 class="mb-4 text-info"><i class="bi bi-cpu me-2"></i>Active Infrastructure</h5>
+                {% if services %}
+                    {% for ser in services %}
+                    <div class="service-item d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center gap-3">
+                            <img src="{{ url_for('static', filename='uploads/' + ser.image) }}" style="width: 60px; height: 45px; object-fit: cover; border-radius: 4px; border: 1px solid rgba(0,242,254,0.3);">
+                            <div>
+                                <h6 class="mb-0 fw-bold">{{ ser.title }}</h6>
+                                <small class="text-secondary">Status: Online</small>
+                            </div>
+                        </div>
+                        <a href="{{ url_for('routes.delete_service', id=ser.id) }}" class="btn btn-outline-danger btn-sm" onclick="return confirm('Terminate this service data?')">
+                            <i class="bi bi-trash"></i>
+                        </a>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="text-center py-5">
+                        <i class="bi bi-database-exclamation fs-1 text-secondary"></i>
+                        <p class="text-secondary mt-2">No custom services deployed.</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

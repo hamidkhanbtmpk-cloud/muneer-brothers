@@ -1,0 +1,298 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+<style>
+    body {
+        background-color: #050505;
+        color: #ffffff;
+        font-family: 'Rajdhani', sans-serif;
+        overflow-x: hidden;
+    }
+    .full-width-section {
+        width: 100vw;
+        position: relative;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+    }
+    .tech-hero {
+        background: linear-gradient(rgba(5, 5, 5, 0.8), rgba(10, 20, 40, 0.9)), url('https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop') no-repeat center center;
+        background-attachment: fixed;
+        background-size: cover;
+        padding: 160px 0;
+        border-bottom: 2px solid #00f2fe;
+    }
+    .hero-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 4rem;
+        text-transform: uppercase;
+        background: -webkit-linear-gradient(#00f2fe, #4facfe);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 20px;
+    }
+    .btn-neon {
+        background: transparent;
+        color: #00f2fe;
+        border: 2px solid #00f2fe;
+        box-shadow: 0 0 10px rgba(0, 242, 254, 0.4);
+        border-radius: 4px;
+        text-transform: uppercase;
+        font-weight: 700;
+        letter-spacing: 2px;
+        padding: 12px 30px;
+        transition: 0.4s;
+    }
+    .btn-neon:hover {
+        background: #00f2fe;
+        color: #000;
+        box-shadow: 0 0 25px rgba(0, 242, 254, 0.8);
+    }
+    .stats-section {
+        background: #0a0f1a;
+        padding: 60px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .stat-number {
+        font-family: 'Orbitron', sans-serif;
+        color: #00f2fe;
+        font-size: 3rem;
+        font-weight: bold;
+    }
+    .services-bg {
+        background: #050505;
+        padding: 100px 0;
+    }
+    .glass-card {
+        background: rgba(255, 255, 255, 0.02);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 12px;
+        padding: 25px;
+        transition: 0.4s;
+        height: 100%;
+    }
+    .glass-card:hover {
+        transform: translateY(-10px);
+        border-color: #00f2fe;
+        box-shadow: 0 10px 30px rgba(0, 242, 254, 0.15);
+        background: rgba(255, 255, 255, 0.05);
+    }
+    .service-img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        filter: grayscale(80%) brightness(0.8);
+        transition: 0.4s;
+    }
+    .glass-card:hover .service-img {
+        filter: grayscale(0%) brightness(1.1);
+    }
+    .client-grid {
+        background: #080c14;
+        padding: 80px 0;
+        border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .client-logo {
+        background: rgba(255,255,255,0.02);
+        border: 1px solid rgba(255,255,255,0.05);
+        padding: 20px;
+        text-align: center;
+        color: #666;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        border-radius: 6px;
+        transition: 0.3s;
+        font-size: 14px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .client-logo:hover {
+        color: #00f2fe;
+        border-color: #00f2fe;
+        box-shadow: inset 0 0 15px rgba(0, 242, 254, 0.1);
+    }
+    .footer-tech {
+        background: #020202;
+        padding: 70px 0 30px;
+        border-top: 2px solid #00f2fe;
+        color: #888;
+    }
+    .footer-tech h4 {
+        color: #fff;
+        font-family: 'Orbitron', sans-serif;
+    }
+    .footer-tech a {
+        color: #888;
+        text-decoration: none;
+        transition: 0.3s;
+    }
+    .footer-tech a:hover {
+        color: #00f2fe;
+    }
+
+    @media (max-width: 768px) {
+        .hero-title { font-size: 2.2rem; }
+        .tech-hero { padding: 80px 0; text-align: center; }
+        .full-width-section { margin-left: 0; margin-right: 0; width: 100%; left: 0; right: 0; }
+        .glass-card { margin-bottom: 20px; }
+        .stat-number { font-size: 2.2rem; }
+    }
+</style>
+
+<div class="full-width-section tech-hero text-center text-md-start">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <p class="text-info fw-bold letter-spacing-2 mb-2"><i class="bi bi-cpu"></i> NEXT-GEN IT INFRASTRUCTURE</p>
+                <h1 class="hero-title">Muneer Brothers</h1>
+                <h2 class="fw-light text-white mb-4 fs-3">Empowering Technology. Delivering Excellence.</h2>
+                <p class="fs-5 mb-5 text-light opacity-75" style="max-width: 650px;">
+                    We engineer robust, scalable, and highly secure digital ecosystems. Transforming the IT landscape across Pakistan with state-of-the-art enterprise solutions.
+                </p>
+                <a href="#services" class="btn btn-neon me-3 mb-2">Explore Solutions</a>
+                <a href="{{ url_for('routes.contact') }}" class="btn btn-outline-light btn-lg px-4 rounded-0 fw-bold letter-spacing-1 mb-2">Contact Command Center</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="full-width-section stats-section text-center">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="stat-number">20+</div>
+                <div class="text-uppercase tracking-wider fw-bold text-secondary mt-2">Years of Innovation</div>
+            </div>
+            <div class="col-md-4">
+                <div class="stat-number">500+</div>
+                <div class="text-uppercase tracking-wider fw-bold text-secondary mt-2">Enterprise Deployments</div>
+            </div>
+            <div class="col-md-4">
+                <div class="stat-number">100%</div>
+                <div class="text-uppercase tracking-wider fw-bold text-secondary mt-2">Secure Infrastructure</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="full-width-section services-bg" id="services">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="hero-title" style="font-size: 2.5rem;">Core Technologies</h2>
+            <p class="text-secondary fs-5">Advanced solutions tailored for modern organizational architecture.</p>
+        </div>
+        <div class="row g-4">
+            {% if services %}
+                {% for ser in services %}
+                <div class="col-lg-4 col-md-6">
+                    <div class="glass-card">
+                        <img src="{{ url_for('static', filename='uploads/' + ser.image) if ser.image else 'https://images.unsplash.com/photo-1498050108023-c5249f4df085' }}" class="service-img">
+                        <h4 class="fw-bold text-white mb-3"><i class="bi bi-gear-fill text-info me-2"></i> {{ ser.title }}</h4>
+                        <p class="text-secondary">{{ ser.description }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="col-lg-4 col-md-6"><div class="glass-card"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085" class="service-img"><h4 class="fw-bold text-white mb-3">Software Engineering</h4><p class="text-secondary">Custom-built applications and scalable APIs.</p></div></div>
+                <div class="col-lg-4 col-md-6"><div class="glass-card"><img src="https://images.unsplash.com/photo-1557597774-9d273605dfa9" class="service-img"><h4 class="fw-bold text-white mb-3">Surveillance Systems</h4><p class="text-secondary">Advanced CCTV networks and monitoring solutions.</p></div></div>
+                <div class="col-lg-4 col-md-6"><div class="glass-card"><img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31" class="service-img"><h4 class="fw-bold text-white mb-3">Data Networking</h4><p class="text-secondary">High-speed LAN/WAN and fiber optic setups.</p></div></div>
+                <div class="col-lg-4 col-md-6"><div class="glass-card"><img src="https://images.unsplash.com/photo-1517433670267-08bbd4be890f" class="service-img"><h4 class="fw-bold text-white mb-3">Enterprise Hardware</h4><p class="text-secondary">Supply of high-tier servers and workstations.</p></div></div>
+                <div class="col-lg-4 col-md-6"><div class="glass-card"><img src="https://images.unsplash.com/photo-1509391366360-2e959784a276" class="service-img"><h4 class="fw-bold text-white mb-3">Solar Integration</h4><p class="text-secondary">Reliable energy powering IT infrastructure.</p></div></div>
+                <div class="col-lg-4 col-md-6"><div class="glass-card"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71" class="service-img"><h4 class="fw-bold text-white mb-3">IT Order Solutions</h4><p class="text-secondary">Customized digital workflow systems.</p></div></div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<div class="full-width-section client-grid">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h3 class="fw-bold text-white"><span class="text-info">|</span> Strategic Partners & Deployments</h3>
+        </div>
+        <div class="row g-3">
+            <div class="col-lg-3 col-md-4 col-6"><div class="client-logo">KRL Hospital</div></div>
+            <div class="col-lg-3 col-md-4 col-6"><div class="client-logo">Hazara University</div></div>
+            <div class="col-lg-3 col-md-4 col-6"><div class="client-logo">UN Office Islamabad</div></div>
+            <div class="col-lg-3 col-md-4 col-6"><div class="client-logo">District Judiciary KPK</div></div>
+            <div class="col-lg-3 col-md-4 col-6"><div class="client-logo">Police Lines KPK</div></div>
+            <div class="col-lg-3 col-md-4 col-6"><div class="client-logo">Steella Technology</div></div>
+            <div class="col-lg-3 col-md-4 col-6"><div class="client-logo">University of Haripur</div></div>
+            <div class="col-lg-3 col-md-4 col-6"><div class="client-logo">BISE Abbottabad</div></div>
+        </div>
+    </div>
+</div>
+
+<div class="full-width-section services-bg" style="border-top: 1px solid rgba(255,255,255,0.05);">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="hero-title" style="font-size: 2.5rem;">Our Core Experts</h2>
+            <p class="text-secondary fs-5">Meet the professionals driving our seamless operations.</p>
+        </div>
+        <div class="row justify-content-center g-4">
+            {% for emp in employees %}
+            <div class="col-lg-10">
+                <div class="glass-card d-flex flex-column flex-md-row align-items-center gap-4 p-4 text-center text-md-start">
+                    <div class="flex-shrink-0">
+                        <img src="{{ url_for('static', filename='uploads/' + emp.image_file) }}" class="rounded-circle border border-3 border-info" style="width: 150px; height: 150px; object-fit: cover; box-shadow: 0 0 20px rgba(0, 242, 254, 0.3);">
+                    </div>
+                    <div>
+                        <h3 class="text-white fw-bold mb-1">{{ emp.name }}</h3>
+                        <h6 class="text-info mb-3 letter-spacing-1 text-uppercase"><i class="bi bi-person-badge me-2"></i>{{ emp.designation }}</h6>
+                        <p class="text-secondary mb-0" style="font-size: 16px; line-height: 1.6;">{{ emp.description }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<div class="full-width-section footer-tech text-start">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-4">
+                <h4 class="mb-4">MUNEER BROTHERS</h4>
+                <p class="mb-4">Transforming the technological footprint of Pakistan through innovation, security, and uncompromising quality.</p>
+                <div class="d-flex gap-3">
+                    <a href="https://linkedin.com" target="_blank" class="fs-4"><i class="bi bi-linkedin"></i></a>
+                    <a href="https://twitter.com" target="_blank" class="fs-4"><i class="bi bi-twitter-x"></i></a>
+                    <a href="https://facebook.com" target="_blank" class="fs-4"><i class="bi bi-facebook"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <h5 class="text-white fw-bold mb-4">Command Centers</h5>
+                {% if offices %}
+                    {% for off in offices %}
+                    <div class="mb-3"><strong class="text-info">{{ off.office_type }}:</strong><br><span class="text-secondary">{{ off.address }}</span></div>
+                    {% endfor %}
+                {% else %}
+                    <div class="mb-3"><strong class="text-info">HQ:</strong><br>Office No. 3, Satellite Center, Sixth Road, Rawalpindi</div>
+                    <div class="mb-3"><strong class="text-info">Branch:</strong><br>Office No. 57, Main Bazaar, Battagram</div>
+                {% endif %}
+            </div>
+            <div class="col-lg-4">
+                <h5 class="text-white fw-bold mb-4">Encrypted Comms</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-3"><a href="https://wa.me/923009191079" target="_blank" class="text-decoration-none"><i class="bi bi-whatsapp text-info me-3 fs-5"></i> <span class="text-secondary">0300-9191079</span></a></li>
+                    <li class="mb-3"><a href="mailto:munirbrothersbtm@gmail.com" class="text-decoration-none"><i class="bi bi-envelope text-info me-3 fs-5"></i> <span class="text-secondary">munirbrothersbtm@gmail.com</span></a></li>
+                    <li class="mb-3"><a href="https://www.muneerbrothers.com" target="_blank" class="text-decoration-none"><i class="bi bi-globe text-info me-3 fs-5"></i> <span class="text-secondary">www.muneerbrothers.com</span></a></li>
+                </ul>
+            </div>
+        </div>
+        <hr class="mt-5 mb-4" style="border-color: rgba(255,255,255,0.1);">
+        <div class="text-center" style="font-family: 'Orbitron', sans-serif; font-size: 12px;">
+            <i class="bi bi-shield-check text-info"></i> SYSTEM SECURE. COPYRIGHT © 2026 MUNEER BROTHERS (PVT) LTD.
+        </div>
+    </div>
+</div>
+{% endblock %}

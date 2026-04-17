@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+<style>
+    body {
+        background-color: #050505;
+        color: #ffffff;
+        font-family: 'Rajdhani', sans-serif;
+    }
+    .admin-card {
+        background: rgba(255, 255, 255, 0.02);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(0, 242, 254, 0.2);
+        border-radius: 12px;
+        padding: 40px;
+        margin-top: 50px;
+        box-shadow: 0 0 30px rgba(0, 242, 254, 0.1);
+    }
+    .hero-title-sm {
+        font-family: 'Orbitron', sans-serif;
+        background: -webkit-linear-gradient(#00f2fe, #4facfe);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+    .form-control {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: white;
+        padding: 12px;
+    }
+    .form-control:focus {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: #00f2fe;
+        color: white;
+        box-shadow: 0 0 15px rgba(0, 242, 254, 0.3);
+    }
+    .label-tech {
+        color: #00f2fe;
+        text-transform: uppercase;
+        font-weight: 600;
+        font-size: 13px;
+        letter-spacing: 1px;
+        margin-bottom: 8px;
+    }
+    .btn-neon {
+        background: transparent;
+        color: #00f2fe;
+        border: 2px solid #00f2fe;
+        box-shadow: 0 0 10px rgba(0, 242, 254, 0.4);
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        padding: 15px;
+        transition: 0.4s;
+    }
+    .btn-neon:hover {
+        background: #00f2fe;
+        color: #000;
+        box-shadow: 0 0 25px rgba(0, 242, 254, 0.8);
+    }
+    .current-img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border: 2px solid #00f2fe;
+        border-radius: 10px;
+        margin-bottom: 15px;
+    }
+</style>
+
+<div class="container mb-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="admin-card">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2 class="hero-title-sm mb-0">Edit Expert Profile</h2>
+                    <a href="{{ url_for('routes.manage_employees') }}" class="btn btn-outline-secondary btn-sm">Cancel</a>
+                </div>
+
+                <form method="POST" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-md-4 mb-4">
+                            <label class="label-tech">Ranking / Serial No</label>
+                            <input type="number" name="serial_no" class="form-control" value="{{ emp.serial_no }}" required>
+                            <small class="text-muted">1 for Top Position</small>
+                        </div>
+                        <div class="col-md-8 mb-4">
+                            <label class="label-tech">Full Name</label>
+                            <input type="text" name="name" class="form-control" value="{{ emp.name }}" required>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="label-tech">Professional Designation</label>
+                        <input type="text" name="designation" class="form-control" value="{{ emp.designation }}" required>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="label-tech">Expertise Description</label>
+                        <textarea name="description" class="form-control" rows="6" required>{{ emp.description }}</textarea>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="label-tech d-block">Profile Image</label>
+                        <div class="d-flex align-items-center gap-4">
+                            <img src="{{ url_for('static', filename='uploads/' + emp.image_file) }}" class="current-img">
+                            <div class="flex-grow-1">
+                                <input type="file" name="image" class="form-control" accept="image/*">
+                                <small class="text-muted">Leave blank to keep current image</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-neon w-100">Update Expert Credentials</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
