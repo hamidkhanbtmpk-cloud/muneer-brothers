@@ -7,13 +7,20 @@ from models import db, User
 def create_app():
     app = Flask(__name__)
     
-    # Configuration
     app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'super-secret-dev-key')
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///muneer_brothers.db'
+    
+    basedir = os.path.abspath(os.path.dirname(__file__))
+    instance_path = os.path.join(basedir, 'instance')
+    
+    if not os.path.exists(instance_path):
+        os.makedirs(instance_path)
+    
+    db_file = os.path.join(instance_path, 'muneer_brothers.db')
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + db_file
+
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     app.config['UPLOAD_FOLDER'] = os.path.join(app.root_path, 'static/uploads')
     
-    # Initialize Extensions
     db.init_app(app)
     bcrypt = Bcrypt(app)
     login_manager = LoginManager(app)
@@ -24,11 +31,9 @@ def create_app():
     def load_user(user_id):
         return User.query.get(int(user_id))
 
-    # Register Blueprints
     from routes import bp as routes_bp
     app.register_blueprint(routes_bp)
 
-    # Initialize Database and Default Admin
     with app.app_context():
         db.create_all()
         if not User.query.filter_by(username='admin').first():
