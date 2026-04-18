@@ -36,8 +36,11 @@ def create_app():
 
     with app.app_context():
         db.create_all()
+        # Secure Admin Logic: Password ab Environment Variable se aayega
         if not User.query.filter_by(username='admin').first():
-            hashed_pw = bcrypt.generate_password_hash('admin123').decode('utf-8')
+            # Agar Render par password set nahi kiya, toh ye temporary password use karega
+            raw_password = os.environ.get('ADMIN_PASSWORD', 'Muneer@786')
+            hashed_pw = bcrypt.generate_password_hash(raw_password).decode('utf-8')
             admin = User(username='admin', password_hash=hashed_pw)
             db.session.add(admin)
             db.session.commit()
