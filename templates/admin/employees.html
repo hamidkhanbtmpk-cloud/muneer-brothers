@@ -1,129 +1,254 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
 <style>
     body {
-        background-color: #050505;
-        color: #ffffff;
-        font-family: 'Rajdhani', sans-serif;
+        background-color: #f8f9fa; /* Consistent admin light background */
+        color: #0d0d0d;
+        font-family: 'DM Sans', sans-serif;
     }
+
     .admin-card {
-        background: rgba(255, 255, 255, 0.02);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(0, 242, 254, 0.2);
-        border-radius: 12px;
-        padding: 30px;
+        background: #ffffff;
+        border: 1px solid #e8e4dd;
+        border-radius: 8px;
+        padding: 32px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+    }
+
+    .dashboard-header {
+        border-bottom: 2px solid #e8e4dd;
+        padding-bottom: 20px;
         margin-bottom: 30px;
     }
+
     .hero-title-sm {
-        font-family: 'Orbitron', sans-serif;
-        background: -webkit-linear-gradient(#00f2fe, #4facfe);
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 32px;
+        font-weight: 600;
+        color: #0d0d0d;
+        margin: 0;
+    }
+
+    .section-header {
+        font-size: 20px;
+        font-weight: 600;
+        color: #0d0d0d;
+        margin-bottom: 24px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .section-header i {
+        color: #b8975a;
+        font-size: 22px;
+    }
+
+    .form-label-custom {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 2px;
         text-transform: uppercase;
+        color: #8a8a8a;
+        margin-bottom: 8px;
+        display: block;
     }
-    .form-control {
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        color: white;
-    }
-    .form-control:focus {
-        background: rgba(255, 255, 255, 0.1);
-        border-color: #00f2fe;
-        color: white;
-        box-shadow: 0 0 10px rgba(0, 242, 254, 0.3);
-    }
-    .btn-neon {
-        background: transparent;
-        color: #00f2fe;
-        border: 2px solid #00f2fe;
-        box-shadow: 0 0 10px rgba(0, 242, 254, 0.4);
-        font-weight: 700;
-        text-transform: uppercase;
-        transition: 0.4s;
-    }
-    .btn-neon:hover {
-        background: #00f2fe;
-        color: #000;
-        box-shadow: 0 0 20px rgba(0, 242, 254, 0.8);
-    }
-    .expert-row {
-        background: rgba(255,255,255,0.03);
-        border-radius: 8px;
-        padding: 15px;
-        margin-bottom: 15px;
-        border-left: 4px solid #00f2fe;
-    }
-    .action-btns .btn {
-        padding: 2px 8px;
+
+    .form-control-custom {
+        background: #ffffff;
+        border: 1px solid #e8e4dd;
+        color: #0d0d0d;
+        padding: 12px 16px;
         font-size: 14px;
+        width: 100%;
+        transition: all 0.3s;
+        border-radius: 4px;
+        margin-bottom: 20px;
+    }
+
+    .form-control-custom:focus {
+        outline: none;
+        border-color: #b8975a;
+        box-shadow: 0 0 0 3px rgba(184, 151, 90, 0.1);
+    }
+
+    .btn-gold-submit {
+        font-family: 'DM Sans', sans-serif;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: #ffffff;
+        background: #0d0d0d;
+        border: none;
+        padding: 16px 24px;
+        cursor: pointer;
+        transition: all 0.3s;
+        border-radius: 4px;
+        width: 100%;
+    }
+
+    .btn-gold-submit:hover {
+        background: #b8975a;
+    }
+
+    .btn-outline-custom {
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: #3a3a3a;
+        background: transparent;
+        border: 1px solid #e8e4dd;
+        padding: 8px 16px;
+        border-radius: 4px;
+        text-decoration: none;
+        transition: all 0.3s;
+    }
+
+    .btn-outline-custom:hover {
+        background: #f0ede8;
+        color: #0d0d0d;
+    }
+
+    /* Personnel List Styling */
+    .personnel-row {
+        background: #ffffff;
+        border: 1px solid #e8e4dd;
+        border-radius: 6px;
+        padding: 16px;
+        margin-bottom: 12px;
+        transition: all 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .personnel-row:hover {
+        border-color: #b8975a;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.03);
+    }
+
+    .rank-badge {
+        background: #faf8f5;
+        border: 1px solid #e8e4dd;
+        color: #b8975a;
+        font-weight: 700;
+        font-size: 13px;
+        padding: 6px 12px;
+        border-radius: 4px;
+        min-width: 45px;
+        text-align: center;
+    }
+
+    .personnel-img {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        border: 1px solid #e8e4dd;
+        border-radius: 50%;
+        padding: 2px;
+    }
+
+    .personnel-name {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 18px;
+        font-weight: 600;
+        color: #0d0d0d;
+        margin: 0 0 2px 0;
+        line-height: 1.2;
+    }
+
+    .personnel-title {
+        font-size: 11px;
+        color: #8a8a8a;
+        margin: 0;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 500;
+    }
+
+    .action-btns .btn {
+        padding: 6px 10px;
+        font-size: 14px;
+        border-radius: 4px;
     }
 </style>
 
-<div class="container mt-5 pt-4">
-    <div class="d-flex justify-content-between align-items-center mb-4">
+<div class="container mt-5 pt-4 mb-5">
+    <div class="d-flex justify-content-between align-items-center dashboard-header">
         <h2 class="hero-title-sm">Expert Management</h2>
-        <a href="{{ url_for('routes.index') }}" class="btn btn-outline-light btn-sm text-uppercase">View Site</a>
+        <a href="{{ url_for('routes.index') }}" class="btn-outline-custom">View Site</a>
     </div>
 
     <div class="row">
         <div class="col-lg-5">
             <div class="admin-card">
-                <h4 class="mb-4 text-info"><i class="bi bi-person-plus me-2"></i>Add New Expert</h4>
+                <h4 class="section-header"><i class="bi bi-person-plus"></i> Add New Expert</h4>
                 <form method="POST" action="{{ url_for('routes.manage_employees') }}" enctype="multipart/form-data">
-                    <div class="mb-3">
-                        <label class="small text-uppercase text-secondary fw-bold">Serial Number (Ranking)</label>
-                        <input type="number" name="serial_no" class="form-control" placeholder="1 for Top" value="1" required>
+                    
+                    <div>
+                        <label class="form-label-custom">Serial Number (Ranking)</label>
+                        <input type="number" name="serial_no" class="form-control-custom" placeholder="1 for Top" value="1" required>
                     </div>
-                    <div class="mb-3">
-                        <label class="small text-uppercase text-secondary fw-bold">Full Name</label>
-                        <input type="text" name="name" class="form-control" placeholder="e.g. Zeshan Khan" required>
+                    
+                    <div>
+                        <label class="form-label-custom">Full Name</label>
+                        <input type="text" name="name" class="form-control-custom" placeholder="e.g. Zeshan Khan" required>
                     </div>
-                    <div class="mb-3">
-                        <label class="small text-uppercase text-secondary fw-bold">Designation</label>
-                        <input type="text" name="designation" class="form-control" placeholder="e.g. Networking Expert" required>
+                    
+                    <div>
+                        <label class="form-label-custom">Designation</label>
+                        <input type="text" name="designation" class="form-control-custom" placeholder="e.g. Networking Expert" required>
                     </div>
-                    <div class="mb-3">
-                        <label class="small text-uppercase text-secondary fw-bold">Expertise Details</label>
-                        <textarea name="description" class="form-control" rows="4" placeholder="Describe their experience..." required></textarea>
+                    
+                    <div>
+                        <label class="form-label-custom">Expertise Details</label>
+                        <textarea name="description" class="form-control-custom" rows="4" placeholder="Describe their experience..." required></textarea>
                     </div>
+                    
                     <div class="mb-4">
-                        <label class="small text-uppercase text-secondary fw-bold">Profile Image</label>
-                        <input type="file" name="image" class="form-control" accept="image/*" required>
+                        <label class="form-label-custom">Profile Image</label>
+                        <input type="file" name="image" class="form-control-custom mb-0" accept="image/*" required>
                     </div>
-                    <button type="submit" class="btn btn-neon w-100 py-3">Deploy Expert Data</button>
+                    
+                    <button type="submit" class="btn-gold-submit mt-2">Deploy Expert Data</button>
                 </form>
             </div>
         </div>
 
         <div class="col-lg-7">
             <div class="admin-card">
-                <h4 class="mb-4 text-info"><i class="bi bi-people me-2"></i>Active Personnel</h4>
+                <h4 class="section-header"><i class="bi bi-people"></i> Active Personnel</h4>
+                
                 {% if employees %}
-                    {% for emp in employees %}
-                    <div class="expert-row d-flex align-items-center justify-content-between">
-                        <div class="d-flex align-items-center gap-3">
-                            <span class="badge bg-info text-dark fw-bold">#{{ emp.serial_no }}</span>
-                            <img src="{{ url_for('static', filename='uploads/' + emp.image_file) }}" class="rounded-circle" style="width: 50px; height: 50px; object-fit: cover; border: 1px solid #00f2fe;">
-                            <div>
-                                <h6 class="mb-0 fw-bold">{{ emp.name }}</h6>
-                                <small class="text-info">{{ emp.designation }}</small>
+                    <div class="mt-4">
+                        {% for emp in employees %}
+                        <div class="personnel-row">
+                            <div class="d-flex align-items-center gap-3">
+                                <span class="rank-badge">#{{ emp.serial_no }}</span>
+                                <img src="{{ url_for('static', filename='uploads/' + emp.image_file) }}" class="personnel-img" alt="{{ emp.name }}">
+                                <div>
+                                    <h6 class="personnel-name">{{ emp.name }}</h6>
+                                    <p class="personnel-title">{{ emp.designation }}</p>
+                                </div>
+                            </div>
+                            <div class="action-btns d-flex gap-2">
+                                <a href="{{ url_for('routes.edit_employee', id=emp.id) }}" class="btn btn-outline-secondary btn-sm" title="Edit"><i class="bi bi-pencil-square"></i></a>
+                                <a href="{{ url_for('routes.delete_employee', id=emp.id) }}" class="btn btn-outline-danger btn-sm" title="Delete" onclick="return confirm('Kya aap waqai is expert ko delete karna chahte hain?')"><i class="bi bi-trash"></i></a>
                             </div>
                         </div>
-                        <div class="action-btns">
-                            <a href="{{ url_for('routes.edit_employee', id=emp.id) }}" class="btn btn-outline-warning btn-sm me-1"><i class="bi bi-pencil-square"></i></a>
-                            <a href="{{ url_for('routes.delete_employee', id=emp.id) }}" class="btn btn-outline-danger btn-sm" onclick="return confirm('Kya aap waqai is expert ko delete karna chahte hain?')"><i class="bi bi-trash"></i></a>
-                        </div>
+                        {% endfor %}
                     </div>
-                    {% endfor %}
                 {% else %}
-                    <div class="text-center py-5">
-                        <i class="bi bi-database-exclamation text-secondary fs-1"></i>
-                        <p class="text-secondary mt-3">No experts deployed yet.</p>
+                    <div class="text-center p-5 border rounded" style="border-color: #e8e4dd !important; margin-top: 20px;">
+                        <i class="bi bi-person-x text-muted" style="font-size: 40px;"></i>
+                        <p class="text-muted mt-3 mb-0">No experts deployed yet.</p>
                     </div>
                 {% endif %}
             </div>

@@ -1,65 +1,225 @@
 {% extends 'base.html' %}
+
 {% block content %}
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
 <style>
-    body { background-color: #050505; color: white; font-family: 'Rajdhani', sans-serif; }
-    .admin-card { background: rgba(255,255,255,0.02); border: 1px solid #00f2fe; border-radius: 12px; padding: 25px; }
-    .form-control { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: white; }
-    .form-control:focus { background: rgba(255,255,255,0.1); border-color: #00f2fe; color: white; box-shadow: 0 0 10px rgba(0, 242, 254, 0.3); }
-    .btn-neon { border: 2px solid #00f2fe; color: #00f2fe; background: transparent; font-weight: bold; transition: 0.3s; }
-    .btn-neon:hover { background: #00f2fe; color: black; box-shadow: 0 0 15px #00f2fe; }
-    .service-item { background: rgba(255,255,255,0.03); border-radius: 8px; padding: 12px; margin-bottom: 10px; border-left: 3px solid #00f2fe; }
+    body {
+        background-color: #f8f9fa; /* Consistent admin light background */
+        color: #0d0d0d;
+        font-family: 'DM Sans', sans-serif;
+    }
+
+    .admin-card {
+        background: #ffffff;
+        border: 1px solid #e8e4dd;
+        border-radius: 8px;
+        padding: 32px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+    }
+
+    .dashboard-header {
+        border-bottom: 2px solid #e8e4dd;
+        padding-bottom: 20px;
+        margin-bottom: 30px;
+    }
+
+    .hero-title-sm {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 32px;
+        font-weight: 600;
+        color: #0d0d0d;
+        margin: 0;
+        text-transform: capitalize;
+    }
+
+    .section-header {
+        font-size: 20px;
+        font-weight: 600;
+        color: #0d0d0d;
+        margin-bottom: 24px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .section-header i {
+        color: #b8975a;
+        font-size: 22px;
+    }
+
+    .form-label-custom {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: #8a8a8a;
+        margin-bottom: 8px;
+        display: block;
+    }
+
+    .form-control-custom {
+        background: #ffffff;
+        border: 1px solid #e8e4dd;
+        color: #0d0d0d;
+        padding: 12px 16px;
+        font-size: 14px;
+        width: 100%;
+        transition: all 0.3s;
+        border-radius: 4px;
+        margin-bottom: 20px;
+    }
+
+    .form-control-custom:focus {
+        outline: none;
+        border-color: #b8975a;
+        box-shadow: 0 0 0 3px rgba(184, 151, 90, 0.1);
+    }
+
+    .btn-gold-submit {
+        font-family: 'DM Sans', sans-serif;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: #ffffff;
+        background: #0d0d0d;
+        border: none;
+        padding: 16px 24px;
+        cursor: pointer;
+        transition: all 0.3s;
+        border-radius: 4px;
+        width: 100%;
+    }
+
+    .btn-gold-submit:hover {
+        background: #b8975a;
+    }
+
+    .btn-outline-custom {
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: #3a3a3a;
+        background: transparent;
+        border: 1px solid #e8e4dd;
+        padding: 8px 16px;
+        border-radius: 4px;
+        text-decoration: none;
+        transition: all 0.3s;
+    }
+
+    .btn-outline-custom:hover {
+        background: #f0ede8;
+        color: #0d0d0d;
+    }
+
+    /* Service List Styling */
+    .service-row {
+        background: #ffffff;
+        border: 1px solid #e8e4dd;
+        border-radius: 6px;
+        padding: 16px;
+        margin-bottom: 12px;
+        transition: all 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .service-row:hover {
+        border-color: #b8975a;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.03);
+    }
+
+    .service-img {
+        width: 70px;
+        height: 50px;
+        object-fit: cover;
+        border-radius: 4px;
+        border: 1px solid #e8e4dd;
+    }
+
+    .service-title {
+        font-family: 'DM Sans', sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        color: #0d0d0d;
+        margin: 0 0 4px 0;
+    }
+
+    .service-status {
+        font-size: 11px;
+        color: #28a745;
+        margin: 0;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 600;
+    }
 </style>
 
-<div class="container mt-5 pt-4">
-    <h2 style="font-family: 'Orbitron';" class="text-info mb-4 text-uppercase">Service Command Center</h2>
-    
+<div class="container mt-5 pt-4 mb-5">
+    <div class="d-flex justify-content-between align-items-center dashboard-header">
+        <h2 class="hero-title-sm">Service Management</h2>
+        <div>
+            <a href="{{ url_for('routes.dashboard') }}" class="btn-outline-custom me-2">Dashboard</a>
+            <a href="{{ url_for('routes.index') }}" class="btn-outline-custom">View Site</a>
+        </div>
+    </div>
+
     <div class="row">
-        <div class="col-md-5">
+        <div class="col-lg-5">
             <div class="admin-card">
-                <h5 class="mb-4 text-info"><i class="bi bi-plus-circle me-2"></i>Deploy New Tech</h5>
+                <h4 class="section-header"><i class="bi bi-plus-circle"></i> Add New Service</h4>
                 <form method="POST" enctype="multipart/form-data">
-                    <div class="mb-3">
-                        <label class="small text-uppercase fw-bold text-secondary">Service Title</label>
-                        <input type="text" name="title" class="form-control" placeholder="e.g. CCTV Surveillance" required>
+                    <div>
+                        <label class="form-label-custom">Service Title</label>
+                        <input type="text" name="title" class="form-control-custom" placeholder="e.g. CCTV Surveillance" required>
                     </div>
-                    <div class="mb-3">
-                        <label class="small text-uppercase fw-bold text-secondary">Tech Description</label>
-                        <textarea name="description" class="form-control" rows="4" placeholder="Briefly describe the technology..." required></textarea>
+                    
+                    <div>
+                        <label class="form-label-custom">Service Description</label>
+                        <textarea name="description" class="form-control-custom" rows="4" placeholder="Briefly describe the technology or service..." required></textarea>
                     </div>
+                    
                     <div class="mb-4">
-                        <label class="small text-uppercase fw-bold text-secondary">Display Image (1200x800)</label>
-                        <input type="file" name="image" class="form-control" accept="image/*" required>
+                        <label class="form-label-custom">Display Image (1200x800)</label>
+                        <input type="file" name="image" class="form-control-custom mb-0" accept="image/*" required>
                     </div>
-                    <button type="submit" class="btn btn-neon w-100 py-2">ACTIVATE SERVICE</button>
+                    
+                    <button type="submit" class="btn-gold-submit mt-2">Publish Service</button>
                 </form>
             </div>
         </div>
 
-        <div class="col-md-7">
+        <div class="col-lg-7">
             <div class="admin-card">
-                <h5 class="mb-4 text-info"><i class="bi bi-cpu me-2"></i>Active Infrastructure</h5>
+                <h4 class="section-header"><i class="bi bi-cpu"></i> Active Infrastructure</h4>
+                
                 {% if services %}
-                    {% for ser in services %}
-                    <div class="service-item d-flex justify-content-between align-items-center">
-                        <div class="d-flex align-items-center gap-3">
-                            <img src="{{ url_for('static', filename='uploads/' + ser.image) }}" style="width: 60px; height: 45px; object-fit: cover; border-radius: 4px; border: 1px solid rgba(0,242,254,0.3);">
-                            <div>
-                                <h6 class="mb-0 fw-bold">{{ ser.title }}</h6>
-                                <small class="text-secondary">Status: Online</small>
+                    <div class="mt-4">
+                        {% for ser in services %}
+                        <div class="service-row">
+                            <div class="d-flex align-items-center gap-3">
+                                <img src="{{ url_for('static', filename='uploads/' + ser.image) }}" class="service-img" alt="{{ ser.title }}">
+                                <div>
+                                    <h6 class="service-title">{{ ser.title }}</h6>
+                                    <p class="service-status"><i class="bi bi-check-circle-fill me-1"></i> Online</p>
+                                </div>
                             </div>
+                            <a href="{{ url_for('routes.delete_service', id=ser.id) }}" class="btn btn-outline-danger btn-sm" onclick="return confirm('Kya aap waqai is service ko delete karna chahte hain?')" title="Remove Service">
+                                <i class="bi bi-trash"></i>
+                            </a>
                         </div>
-                        <a href="{{ url_for('routes.delete_service', id=ser.id) }}" class="btn btn-outline-danger btn-sm" onclick="return confirm('Terminate this service data?')">
-                            <i class="bi bi-trash"></i>
-                        </a>
+                        {% endfor %}
                     </div>
-                    {% endfor %}
                 {% else %}
-                    <div class="text-center py-5">
-                        <i class="bi bi-database-exclamation fs-1 text-secondary"></i>
-                        <p class="text-secondary mt-2">No custom services deployed.</p>
+                    <div class="text-center p-5 border rounded" style="border-color: #e8e4dd !important; margin-top: 20px;">
+                        <i class="bi bi-layers text-muted" style="font-size: 40px;"></i>
+                        <p class="text-muted mt-3 mb-0">No services published yet.</p>
                     </div>
                 {% endif %}
             </div>

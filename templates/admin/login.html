@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
 <style>
     body {
-        background-color: #050505;
-        color: #ffffff;
-        font-family: 'Rajdhani', sans-serif;
+        background-color: #faf8f5; /* Premium off-white background */
+        color: #0d0d0d;
+        font-family: 'DM Sans', sans-serif;
     }
 
     .login-container {
@@ -19,75 +19,88 @@
     }
 
     .login-card {
-        background: rgba(255, 255, 255, 0.02);
-        backdrop-filter: blur(15px);
-        border: 1px solid rgba(0, 242, 254, 0.2);
-        border-radius: 15px;
-        padding: 40px;
+        background: #ffffff;
+        border: 1px solid #e8e4dd;
+        border-radius: 8px;
+        padding: 56px 48px;
         width: 100%;
-        max-width: 450px;
-        box-shadow: 0 0 30px rgba(0, 242, 254, 0.1);
+        max-width: 480px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04);
     }
 
     .login-header h2 {
-        font-family: 'Orbitron', sans-serif;
-        background: -webkit-linear-gradient(#00f2fe, #4facfe);
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-        text-transform: uppercase;
-        letter-spacing: 2px;
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 36px;
+        font-weight: 400;
+        color: #0d0d0d;
+        margin-bottom: 8px;
     }
 
-    .form-label {
-        color: #00f2fe;
+    .login-header p {
+        font-size: 13px;
+        letter-spacing: 1px;
+        color: #8a8a8a;
+        text-transform: uppercase;
+        font-weight: 500;
+        margin-bottom: 32px;
+    }
+
+    .form-label-custom {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: #3a3a3a;
+        margin-bottom: 10px;
+        display: block;
+    }
+
+    .form-control-custom {
+        background: #ffffff;
+        border: 1px solid #e8e4dd;
+        color: #0d0d0d;
+        border-radius: 4px;
+        padding: 14px 16px;
+        width: 100%;
+        font-size: 14px;
+        transition: all 0.3s;
+    }
+
+    .form-control-custom:focus {
+        outline: none;
+        border-color: #b8975a; /* Gold focus */
+        box-shadow: 0 0 0 3px rgba(184, 151, 90, 0.1);
+    }
+
+    .form-control-custom::placeholder {
+        color: #c4c4c4;
+    }
+
+    .btn-gold-submit {
+        font-family: 'DM Sans', sans-serif;
+        background: #0d0d0d;
+        color: #ffffff;
+        border: none;
+        border-radius: 4px;
         text-transform: uppercase;
         font-weight: 600;
-        font-size: 14px;
-        letter-spacing: 1px;
-    }
-
-    .form-control {
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        color: white;
-        border-radius: 4px;
-        padding: 12px;
-    }
-
-    .form-control:focus {
-        background: rgba(255, 255, 255, 0.1);
-        border-color: #00f2fe;
-        color: white;
-        box-shadow: 0 0 15px rgba(0, 242, 254, 0.3);
-    }
-
-    .btn-neon {
-        background: transparent;
-        color: #00f2fe;
-        border: 2px solid #00f2fe;
-        box-shadow: 0 0 10px rgba(0, 242, 254, 0.4);
-        border-radius: 4px;
-        text-transform: uppercase;
-        font-weight: 700;
+        font-size: 12px;
         letter-spacing: 2px;
         width: 100%;
-        padding: 12px;
-        margin-top: 20px;
-        transition: 0.4s;
+        padding: 16px;
+        margin-top: 24px;
+        cursor: pointer;
+        transition: all 0.3s;
     }
 
-    .btn-neon:hover {
-        background: #00f2fe;
-        color: #000;
-        box-shadow: 0 0 25px rgba(0, 242, 254, 0.8);
+    .btn-gold-submit:hover {
+        background: #b8975a; /* Gold hover */
     }
 
     .security-icon {
-        font-size: 3rem;
-        color: #00f2fe;
-        margin-bottom: 20px;
-        text-shadow: 0 0 15px rgba(0, 242, 254, 0.5);
+        font-size: 40px;
+        color: #b8975a;
+        margin-bottom: 16px;
     }
 </style>
 
@@ -96,21 +109,21 @@
         <div class="security-icon">
             <i class="bi bi-shield-lock"></i>
         </div>
-        <div class="login-header mb-4">
-            <h2>Admin Login</h2>
-            <p class="text-secondary small">Restricted Access - Muneer Brothers Portal</p>
+        <div class="login-header">
+            <h2>Admin Portal</h2>
+            <p>Secure Access for Authorized Personnel</p>
         </div>
 
         <form method="POST" action="{{ url_for('routes.admin_login') }}">
-            <div class="mb-3 text-start">
-                <label class="form-label">Username</label>
-                <input type="text" name="username" class="form-control" placeholder="Enter Admin ID" required>
+            <div class="mb-4 text-start">
+                <label class="form-label-custom">Username</label>
+                <input type="text" name="username" class="form-control-custom" placeholder="Enter Admin ID" required>
             </div>
             <div class="mb-4 text-start">
-                <label class="form-label">Password</label>
-                <input type="password" name="password" class="form-control" placeholder="••••••••" required>
+                <label class="form-label-custom">Password</label>
+                <input type="password" name="password" class="form-control-custom" placeholder="••••••••" required>
             </div>
-            <button type="submit" class="btn btn-neon">Initiate Override</button>
+            <button type="submit" class="btn-gold-submit">Secure Login</button>
         </form>
     </div>
 </div>

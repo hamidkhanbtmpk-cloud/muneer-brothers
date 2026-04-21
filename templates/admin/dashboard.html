@@ -1,102 +1,259 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
 <style>
-    body { background-color: #050505; color: #ffffff; font-family: 'Rajdhani', sans-serif; }
+    :root {
+        --ink: #0d0d0d;
+        --slate: #3a3a3a;
+        --muted: #8a8a8a;
+        --paper: #faf8f5;
+        --white: #ffffff;
+        --gold: #b8975a;
+        --border: #e8e4dd;
+        --danger: #dc3545;
+    }
+
+    body {
+        background-color: var(--paper);
+        color: var(--ink);
+        font-family: 'DM Sans', sans-serif;
+    }
+
+    .admin-container {
+        padding: 60px 0;
+        min-height: 100vh;
+    }
+
+    .admin-header {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: clamp(32px, 4vw, 44px);
+        font-weight: 300;
+        color: var(--ink);
+    }
+
     .dash-card {
-        background: rgba(255, 255, 255, 0.02);
-        border: 1px solid rgba(0, 242, 254, 0.2);
-        border-radius: 12px;
-        padding: 25px;
-        transition: 0.3s;
+        background: var(--white);
+        border: 1px solid var(--border);
+        padding: 40px 24px;
         text-align: center;
         height: 100%;
+        transition: all 0.4s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
-    .dash-card:hover { border-color: #00f2fe; box-shadow: 0 0 20px rgba(0, 242, 254, 0.2); transform: translateY(-5px); }
-    .hero-title-sm {
-        font-family: 'Orbitron', sans-serif;
-        background: -webkit-linear-gradient(#00f2fe, #4facfe);
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
+
+    .dash-card:hover {
+        border-color: var(--gold);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.04);
+        transform: translateY(-4px);
+    }
+
+    .dash-num {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 56px;
+        font-weight: 300;
+        color: var(--ink);
+        line-height: 1;
+        margin-bottom: 12px;
+    }
+
+    .dash-label {
+        font-size: 11px;
+        letter-spacing: 2.5px;
         text-transform: uppercase;
+        color: var(--muted);
+        font-weight: 600;
+        margin-bottom: 28px;
     }
-    .msg-box {
-        background: rgba(255,255,255,0.03);
-        border-radius: 8px;
-        padding: 15px;
-        margin-bottom: 10px;
-        border-left: 3px solid #00f2fe;
-    }
+
     .btn-admin {
-        background: transparent;
-        border: 1px solid #00f2fe;
-        color: #00f2fe;
-        font-size: 0.8rem;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 1.5px;
         text-transform: uppercase;
-        font-weight: bold;
-        transition: 0.3s;
+        color: var(--ink);
+        background: transparent;
+        border: 1px solid var(--border);
+        padding: 14px 20px;
+        width: 100%;
+        transition: all 0.3s;
+        text-decoration: none;
+        display: inline-block;
     }
-    .btn-admin:hover { background: #00f2fe; color: #000; }
+
+    .btn-admin:hover {
+        border-color: var(--ink);
+        background: var(--ink);
+        color: var(--white);
+    }
+
+    .btn-top {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        padding: 12px 24px;
+        border-radius: 0;
+        transition: all 0.3s;
+    }
+
+    .btn-top-view {
+        background: var(--white);
+        color: var(--ink);
+        border: 1px solid var(--border);
+    }
+
+    .btn-top-view:hover {
+        background: var(--ink);
+        color: var(--white);
+    }
+
+    .btn-top-logout {
+        background: var(--white);
+        color: var(--danger);
+        border: 1px solid var(--danger);
+    }
+
+    .btn-top-logout:hover {
+        background: var(--danger);
+        color: var(--white);
+    }
+
+    .section-title {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 32px;
+        font-weight: 400;
+        color: var(--ink);
+        margin-bottom: 32px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .section-title i {
+        color: var(--gold);
+        font-size: 24px;
+    }
+
+    .msg-box {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-left: 3px solid var(--gold);
+        padding: 28px;
+        margin-bottom: 16px;
+        transition: all 0.3s;
+    }
+
+    .msg-box:hover {
+        box-shadow: 0 10px 20px rgba(0,0,0,0.03);
+    }
+
+    .msg-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .msg-name {
+        font-weight: 600;
+        color: var(--ink);
+        font-size: 15px;
+        margin-bottom: 2px;
+    }
+
+    .msg-email {
+        color: var(--muted);
+        font-size: 13px;
+        font-weight: 400;
+    }
+
+    .msg-time {
+        font-size: 11px;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--gold);
+        font-weight: 600;
+    }
+
+    .msg-body {
+        margin-top: 16px;
+        font-size: 14px;
+        line-height: 1.8;
+        color: var(--slate);
+        margin-bottom: 0;
+    }
 </style>
 
-<div class="container mt-5 pt-4">
-    <div class="d-flex justify-content-between align-items-center mb-5">
-        <h2 class="hero-title-sm">Admin Control Center</h2>
-        <div>
-            <a href="{{ url_for('routes.index') }}" class="btn btn-outline-light btn-sm me-2">View Site</a>
-            <a href="{{ url_for('routes.admin_logout') }}" class="btn btn-danger btn-sm">Logout</a>
+<div class="container admin-container">
+    <div class="d-flex justify-content-between align-items-center mb-5 flex-wrap gap-3">
+        <h2 class="admin-header">Executive Dashboard</h2>
+        <div class="d-flex gap-2">
+            <a href="{{ url_for('routes.index') }}" class="btn btn-top btn-top-view">View Site</a>
+            <a href="{{ url_for('routes.admin_logout') }}" class="btn btn-top btn-top-logout">Logout</a>
         </div>
     </div>
 
     <div class="row g-4 mb-5">
         <div class="col-md-3">
             <div class="dash-card">
-                <h3 class="text-info fw-bold">{{ e_count }}</h3>
-                <p class="text-secondary text-uppercase small">Experts Deployed</p>
-                <a href="{{ url_for('routes.manage_employees') }}" class="btn btn-admin w-100 mt-3">Manage Experts</a>
+                <h3 class="dash-num">{{ e_count }}</h3>
+                <p class="dash-label">Core Experts</p>
+                <a href="{{ url_for('routes.manage_employees') }}" class="btn-admin">Manage Experts</a>
             </div>
         </div>
         <div class="col-md-3">
             <div class="dash-card">
-                <h3 class="text-info fw-bold">{{ s_count }}</h3>
-                <p class="text-secondary text-uppercase small">Active Services</p>
-                <a href="{{ url_for('routes.manage_services') }}" class="btn btn-admin w-100 mt-3">Manage Services</a>
+                <h3 class="dash-num">{{ s_count }}</h3>
+                <p class="dash-label">Active Services</p>
+                <a href="{{ url_for('routes.manage_services') }}" class="btn-admin">Manage Services</a>
             </div>
         </div>
         <div class="col-md-3">
             <div class="dash-card">
-                <h3 class="text-info fw-bold">{{ o_count }}</h3>
-                <p class="text-secondary text-uppercase small">Command Centers</p>
-                <a href="{{ url_for('routes.manage_offices') }}" class="btn btn-admin w-100 mt-3">Manage Offices</a>
+                <h3 class="dash-num">{{ o_count }}</h3>
+                <p class="dash-label">Offices</p>
+                <a href="{{ url_for('routes.manage_offices') }}" class="btn-admin">Manage Offices</a>
             </div>
         </div>
         <div class="col-md-3">
             <div class="dash-card">
-                <h3 class="text-info fw-bold">{{ m_count }}</h3>
-                <p class="text-secondary text-uppercase small">Total Inquiries</p>
-                <div class="mt-3 py-2 text-secondary small">System Secure <i class="bi bi-shield-lock"></i></div>
+                <h3 class="dash-num">{{ m_count }}</h3>
+                <p class="dash-label">Total Inquiries</p>
+                <div class="mt-2 py-2" style="font-size: 11px; letter-spacing: 1px; color: var(--gold); text-transform: uppercase;">
+                    <i class="bi bi-shield-check me-1"></i> Secure Connection
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="row">
+    <div class="row mt-5">
         <div class="col-lg-12">
-            <h4 class="mb-4 text-white"><i class="bi bi-envelope-paper me-2 text-info"></i> Recent Inquiries</h4>
+            <h4 class="section-title"><i class="bi bi-inbox"></i> Recent Inquiries</h4>
+            
             {% for msg in messages %}
             <div class="msg-box">
-                <div class="d-flex justify-content-between align-items-center">
-                    <h6 class="text-info mb-1">{{ msg.name }} <small class="text-secondary">({{ msg.email }})</small></h6>
-                    <small class="text-muted">{{ msg.timestamp.strftime('%d %b, %H:%M') }}</small>
+                <div class="msg-header">
+                    <div>
+                        <div class="msg-name">{{ msg.name }}</div>
+                        <div class="msg-email">{{ msg.email }}</div>
+                    </div>
+                    <div class="msg-time">{{ msg.timestamp.strftime('%d %b, %H:%M') }}</div>
                 </div>
-                <p class="mb-0 small text-light mt-2">{{ msg.message }}</p>
+                <p class="msg-body">{{ msg.message }}</p>
             </div>
             {% else %}
-            <p class="text-secondary">No messages received yet.</p>
+            <div class="text-center py-5" style="border: 1px dashed var(--border); background: var(--white);">
+                <i class="bi bi-envelope-paper text-muted" style="font-size: 32px;"></i>
+                <p class="mt-3 text-muted" style="font-size: 14px;">No inquiries received yet.</p>
+            </div>
             {% endfor %}
+            
         </div>
     </div>
 </div>

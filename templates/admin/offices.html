@@ -1,45 +1,209 @@
 {% extends 'base.html' %}
+
 {% block content %}
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
 <style>
-    body { background-color: #050505; color: white; font-family: 'Rajdhani', sans-serif; }
-    .admin-card { background: rgba(255,255,255,0.02); border: 1px solid #00f2fe; border-radius: 12px; padding: 25px; }
-    .form-control { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: white; }
-    .btn-neon { border: 2px solid #00f2fe; color: #00f2fe; background: transparent; font-weight: bold; }
-    .btn-neon:hover { background: #00f2fe; color: black; }
+    body {
+        background-color: #f8f9fa; /* Consistent admin light background */
+        color: #0d0d0d;
+        font-family: 'DM Sans', sans-serif;
+    }
+
+    .admin-card {
+        background: #ffffff;
+        border: 1px solid #e8e4dd;
+        border-radius: 8px;
+        padding: 32px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+    }
+
+    .dashboard-header {
+        border-bottom: 2px solid #e8e4dd;
+        padding-bottom: 20px;
+        margin-bottom: 30px;
+    }
+
+    .hero-title-sm {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 32px;
+        font-weight: 600;
+        color: #0d0d0d;
+        margin: 0;
+    }
+
+    .section-header {
+        font-size: 20px;
+        font-weight: 600;
+        color: #0d0d0d;
+        margin-bottom: 24px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .section-header i {
+        color: #b8975a;
+        font-size: 22px;
+    }
+
+    .form-label-custom {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: #8a8a8a;
+        margin-bottom: 8px;
+        display: block;
+    }
+
+    .form-control-custom {
+        background: #ffffff;
+        border: 1px solid #e8e4dd;
+        color: #0d0d0d;
+        padding: 12px 16px;
+        font-size: 14px;
+        width: 100%;
+        transition: all 0.3s;
+        border-radius: 4px;
+        margin-bottom: 20px;
+    }
+
+    .form-control-custom:focus {
+        outline: none;
+        border-color: #b8975a;
+        box-shadow: 0 0 0 3px rgba(184, 151, 90, 0.1);
+    }
+
+    .btn-gold-submit {
+        font-family: 'DM Sans', sans-serif;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: #ffffff;
+        background: #0d0d0d;
+        border: none;
+        padding: 16px 24px;
+        cursor: pointer;
+        transition: all 0.3s;
+        border-radius: 4px;
+        width: 100%;
+    }
+
+    .btn-gold-submit:hover {
+        background: #b8975a;
+    }
+
+    .btn-outline-custom {
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: #3a3a3a;
+        background: transparent;
+        border: 1px solid #e8e4dd;
+        padding: 8px 16px;
+        border-radius: 4px;
+        text-decoration: none;
+        transition: all 0.3s;
+    }
+
+    .btn-outline-custom:hover {
+        background: #f0ede8;
+        color: #0d0d0d;
+    }
+
+    /* Office List Styling */
+    .office-row {
+        background: #ffffff;
+        border: 1px solid #e8e4dd;
+        border-radius: 6px;
+        padding: 16px 20px;
+        margin-bottom: 12px;
+        transition: all 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .office-row:hover {
+        border-color: #b8975a;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.03);
+    }
+
+    .office-type {
+        font-family: 'DM Sans', sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        color: #0d0d0d;
+        margin: 0 0 4px 0;
+    }
+
+    .office-address {
+        font-size: 13px;
+        color: #8a8a8a;
+        margin: 0;
+        line-height: 1.5;
+    }
 </style>
 
-<div class="container mt-5">
-    <h2 style="font-family: 'Orbitron';" class="text-info mb-4">Manage Offices</h2>
+<div class="container mt-5 pt-4 mb-5">
+    <div class="d-flex justify-content-between align-items-center dashboard-header">
+        <h2 class="hero-title-sm">Manage Offices</h2>
+        <div>
+            <a href="{{ url_for('routes.dashboard') }}" class="btn-outline-custom me-2">Dashboard</a>
+            <a href="{{ url_for('routes.index') }}" class="btn-outline-custom">View Site</a>
+        </div>
+    </div>
+
     <div class="row">
-        <div class="col-md-5">
+        <div class="col-lg-5">
             <div class="admin-card">
-                <h5 class="mb-3">Add Command Center</h5>
+                <h4 class="section-header"><i class="bi bi-building-add"></i> Add Command Center</h4>
                 <form method="POST">
-                    <div class="mb-3">
-                        <label class="small">Office Type</label>
-                        <input type="text" name="office_type" class="form-control" placeholder="e.g. HQ or Branch" required>
+                    <div>
+                        <label class="form-label-custom">Office Type</label>
+                        <input type="text" name="office_type" class="form-control-custom" placeholder="e.g. Headquarters, Branch" required>
                     </div>
-                    <div class="mb-3">
-                        <label class="small">Address</label>
-                        <textarea name="address" class="form-control" rows="3" required></textarea>
+                    <div>
+                        <label class="form-label-custom">Complete Address</label>
+                        <textarea name="address" class="form-control-custom" rows="4" placeholder="Enter full address details..." required></textarea>
                     </div>
-                    <button type="submit" class="btn btn-neon w-100">Add Office</button>
+                    <button type="submit" class="btn-gold-submit mt-2">Register Office</button>
                 </form>
             </div>
         </div>
-        <div class="col-md-7">
+
+        <div class="col-lg-7">
             <div class="admin-card">
-                <h5 class="mb-3">Registered Locations</h5>
-                {% for off in offices %}
-                <div class="d-flex justify-content-between align-items-center border-bottom border-secondary py-2">
-                    <div>
-                        <h6 class="mb-0">{{ off.office_type }}</h6>
-                        <small class="text-secondary">{{ off.address }}</small>
+                <h4 class="section-header"><i class="bi bi-geo-alt"></i> Registered Locations</h4>
+                
+                {% if offices %}
+                    <div class="mt-4">
+                        {% for off in offices %}
+                        <div class="office-row">
+                            <div class="d-flex align-items-start gap-3">
+                                <i class="bi bi-building text-muted mt-1" style="font-size: 18px;"></i>
+                                <div>
+                                    <h6 class="office-type">{{ off.office_type }}</h6>
+                                    <p class="office-address">{{ off.address }}</p>
+                                </div>
+                            </div>
+                            <a href="{{ url_for('routes.delete_office', id=off.id) }}" class="btn btn-outline-danger btn-sm" onclick="return confirm('Kya aap waqai is office ko remove karna chahte hain?')" title="Remove Location">
+                                <i class="bi bi-trash"></i>
+                            </a>
+                        </div>
+                        {% endfor %}
                     </div>
-                    <a href="{{ url_for('routes.delete_office', id=off.id) }}" class="btn btn-outline-danger btn-sm" onclick="return confirm('Remove?')">Remove</a>
-                </div>
-                {% endfor %}
+                {% else %}
+                    <div class="text-center p-5 border rounded" style="border-color: #e8e4dd !important; margin-top: 20px;">
+                        <i class="bi bi-building-slash text-muted" style="font-size: 40px;"></i>
+                        <p class="text-muted mt-3 mb-0">No offices registered yet.</p>
+                    </div>
+                {% endif %}
             </div>
         </div>
     </div>
