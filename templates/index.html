@@ -1,298 +1,1765 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-<style>
-    body {
-        background-color: #050505;
-        color: #ffffff;
-        font-family: 'Rajdhani', sans-serif;
-        overflow-x: hidden;
-    }
-    .full-width-section {
-        width: 100vw;
-        position: relative;
-        left: 50%;
-        right: 50%;
-        margin-left: -50vw;
-        margin-right: -50vw;
-    }
-    .tech-hero {
-        background: linear-gradient(rgba(5, 5, 5, 0.8), rgba(10, 20, 40, 0.9)), url('https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop') no-repeat center center;
-        background-attachment: fixed;
-        background-size: cover;
-        padding: 160px 0;
-        border-bottom: 2px solid #00f2fe;
-    }
-    .hero-title {
-        font-family: 'Orbitron', sans-serif;
-        font-size: 4rem;
-        text-transform: uppercase;
-        background: -webkit-linear-gradient(#00f2fe, #4facfe);
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-        margin-bottom: 20px;
-    }
-    .btn-neon {
-        background: transparent;
-        color: #00f2fe;
-        border: 2px solid #00f2fe;
-        box-shadow: 0 0 10px rgba(0, 242, 254, 0.4);
-        border-radius: 4px;
-        text-transform: uppercase;
-        font-weight: 700;
-        letter-spacing: 2px;
-        padding: 12px 30px;
-        transition: 0.4s;
-    }
-    .btn-neon:hover {
-        background: #00f2fe;
-        color: #000;
-        box-shadow: 0 0 25px rgba(0, 242, 254, 0.8);
-    }
-    .stats-section {
-        background: #0a0f1a;
-        padding: 60px 0;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    }
-    .stat-number {
-        font-family: 'Orbitron', sans-serif;
-        color: #00f2fe;
-        font-size: 3rem;
-        font-weight: bold;
-    }
-    .services-bg {
-        background: #050505;
-        padding: 100px 0;
-    }
-    .glass-card {
-        background: rgba(255, 255, 255, 0.02);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        border-radius: 12px;
-        padding: 25px;
-        transition: 0.4s;
-        height: 100%;
-    }
-    .glass-card:hover {
-        transform: translateY(-10px);
-        border-color: #00f2fe;
-        box-shadow: 0 10px 30px rgba(0, 242, 254, 0.15);
-        background: rgba(255, 255, 255, 0.05);
-    }
-    .service-img {
-        width: 100%;
-        height: 200px;
-        object-fit: cover;
-        border-radius: 8px;
-        margin-bottom: 20px;
-        filter: grayscale(80%) brightness(0.8);
-        transition: 0.4s;
-    }
-    .glass-card:hover .service-img {
-        filter: grayscale(0%) brightness(1.1);
-    }
-    .client-grid {
-        background: #080c14;
-        padding: 80px 0;
-        border-top: 1px solid rgba(255,255,255,0.05);
-    }
-    .client-logo {
-        background: rgba(255,255,255,0.02);
-        border: 1px solid rgba(255,255,255,0.05);
-        padding: 20px;
-        text-align: center;
-        color: #666;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        border-radius: 6px;
-        transition: 0.3s;
-        font-size: 14px;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    .client-logo:hover {
-        color: #00f2fe;
-        border-color: #00f2fe;
-        box-shadow: inset 0 0 15px rgba(0, 242, 254, 0.1);
-    }
-    .footer-tech {
-        background: #020202;
-        padding: 70px 0 30px;
-        border-top: 2px solid #00f2fe;
-        color: #888;
-    }
-    .footer-tech h4 {
-        color: #fff;
-        font-family: 'Orbitron', sans-serif;
-    }
-    .footer-tech a {
-        color: #888;
-        text-decoration: none;
-        transition: 0.3s;
-    }
-    .footer-tech a:hover {
-        color: #00f2fe;
-    }
 
-    @media (max-width: 768px) {
-        .hero-title { font-size: 2.2rem; }
-        .tech-hero { padding: 80px 0; text-align: center; }
-        .full-width-section { margin-left: 0; margin-right: 0; width: 100%; left: 0; right: 0; }
-        .glass-card { margin-bottom: 20px; }
-        .stat-number { font-size: 2.2rem; }
-    }
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+<style>
+/* ==========================================================================
+   CSS VARIABLES & GLOBAL RESET
+   ========================================================================== */
+:root {
+    --ink: #0d0d0d;
+    --ink-soft: #1a1a1a;
+    --slate: #3a3a3a;
+    --muted: #8a8a8a;
+    --ghost: #f0ede8;
+    --paper: #faf8f5;
+    --white: #ffffff;
+    --gold: #b8975a;
+    --gold-light: #d4b07a;
+    --gold-pale: #f5eedf;
+    --border: #e8e4dd;
+    --transition-slow: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    --transition-fast: all 0.3s ease;
+}
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100vw !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow-x: hidden !important;
+    background: var(--white) !important;
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    scroll-behavior: smooth;
+}
+
+::selection {
+    background: var(--gold);
+    color: var(--white);
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: var(--paper);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--gold);
+    border-radius: 0px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--ink);
+}
+
+/* ==========================================================================
+   TYPOGRAPHY & UTILITIES
+   ========================================================================== */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    color: var(--ink);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.section-padding {
+    padding: 120px 48px;
+    width: 100vw !important;
+}
+
+.inner-container {
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+.section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.section-label::before {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: var(--gold);
+}
+
+.section-title {
+    font-size: clamp(36px, 5vw, 56px);
+    line-height: 1.1;
+    margin-bottom: 24px;
+}
+
+.section-title em {
+    font-style: italic;
+    color: var(--gold);
+}
+
+.text-center { text-align: center; }
+.justify-center { justify-content: center; }
+.justify-center::before { display: none; }
+.mx-auto { margin-left: auto; margin-right: auto; }
+
+/* Buttons */
+.btn-primary-gold {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--white);
+    background: var(--gold);
+    border: 1px solid var(--gold);
+    padding: 18px 44px;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.btn-primary-gold:hover {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--white);
+}
+
+.btn-ghost-dark {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ink);
+    background: transparent;
+    border: 1px solid var(--border);
+    padding: 18px 44px;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.btn-ghost-dark:hover {
+    border-color: var(--ink);
+    background: var(--ink);
+    color: var(--white);
+}
+
+/* ==========================================================================
+   NAVIGATION
+   ========================================================================== */
+.nav-premium {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw !important;
+    z-index: 1000;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 20px 0;
+    transition: var(--transition-slow);
+}
+
+.nav-premium.scrolled {
+    padding: 12px 0;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.nav-inner {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ink);
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+}
+
+.nav-logo span {
+    color: var(--gold);
+}
+
+.nav-logo small {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    color: var(--muted);
+    margin-top: 4px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+}
+
+.nav-links a {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--slate);
+    position: relative;
+    padding-bottom: 4px;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.4s ease;
+}
+
+.nav-links a:hover { color: var(--gold); }
+.nav-links a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.mobile-menu-btn {
+    display: none;
+    font-size: 28px;
+    color: var(--ink);
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+/* ==========================================================================
+   HERO SECTION
+   ========================================================================== */
+.hero {
+    min-height: 100vh;
+    width: 100vw !important;
+    display: flex;
+    align-items: center;
+    background: var(--paper);
+    position: relative;
+    overflow: hidden;
+    padding-top: 100px;
+}
+
+.hero-bg {
+    position: absolute;
+    top: 0; right: 0;
+    width: 55%;
+    height: 100%;
+    background: url('https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
+    opacity: 0.4;
+    z-index: 1;
+}
+
+.hero-bg::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, var(--paper) 0%, rgba(250,248,245,0) 100%);
+}
+
+.hero-grid-line {
+    position: absolute;
+    top: 0; right: 45%;
+    width: 1px;
+    height: 100%;
+    background: var(--border);
+    z-index: 2;
+}
+
+.hero-content {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 48px;
+    width: 100%;
+    position: relative;
+    z-index: 3;
+}
+
+.hero-headline {
+    font-size: clamp(48px, 7vw, 100px);
+    font-weight: 300;
+    line-height: 1.05;
+    color: var(--ink);
+    max-width: 800px;
+    margin-bottom: 32px;
+}
+
+.hero-body {
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--slate);
+    max-width: 500px;
+    margin-bottom: 56px;
+}
+
+.hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.hero-badges {
+    display: flex;
+    gap: 32px;
+    margin-top: 80px;
+    flex-wrap: wrap;
+    border-top: 1px solid var(--border);
+    padding-top: 32px;
+    max-width: 600px;
+}
+
+.hero-badge {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: var(--slate);
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.hero-badge i {
+    color: var(--gold);
+    font-size: 18px;
+}
+
+/* ==========================================================================
+   STATS STRIP
+   ========================================================================== */
+.stats-strip {
+    background: var(--ink);
+    padding: 80px 48px;
+    width: 100vw !important;
+    position: relative;
+    z-index: 4;
+}
+
+.stats-inner {
+    max-width: 1440px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 20px 40px;
+    border-right: 1px solid rgba(255,255,255,0.1);
+}
+
+.stat-item:last-child { border-right: none; }
+
+.stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(48px, 5vw, 72px);
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 12px;
+}
+
+.stat-num span { color: var(--gold); }
+
+.stat-label {
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    font-weight: 500;
+}
+
+/* ==========================================================================
+   ABOUT SECTION
+   ========================================================================== */
+.about-section {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: center;
+}
+
+.about-body {
+    font-size: 16px;
+    line-height: 1.9;
+    color: var(--slate);
+    margin-bottom: 24px;
+}
+
+.trust-badges {
+    display: flex;
+    margin-top: 48px;
+    border: 1px solid var(--border);
+    background: var(--paper);
+}
+
+.trust-badge {
+    padding: 24px;
+    border-right: 1px solid var(--border);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--ink);
+    flex: 1;
+    text-align: center;
+}
+.trust-badge:last-child { border-right: none; }
+
+.about-visual {
+    position: relative;
+    padding-left: 40px;
+    padding-bottom: 40px;
+}
+
+.about-img-main {
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+    filter: grayscale(10%);
+    box-shadow: -20px 20px 0 var(--paper);
+}
+
+.about-img-accent {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 240px;
+    height: 240px;
+    object-fit: cover;
+    border: 10px solid var(--white);
+    filter: grayscale(20%);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.about-year-tag {
+    position: absolute;
+    top: 40px;
+    right: -30px;
+    background: var(--gold);
+    color: var(--white);
+    padding: 30px 40px;
+    text-align: center;
+    box-shadow: 0 15px 30px rgba(184, 151, 90, 0.3);
+}
+
+.about-year-tag .year {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 300;
+    line-height: 1;
+}
+
+.about-year-tag small {
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 8px;
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   SERVICES SECTION (EXPANDED)
+   ========================================================================== */
+.services-section {
+    background: var(--paper);
+}
+
+.services-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    margin-bottom: 80px;
+    align-items: end;
+}
+
+.services-intro {
+    font-size: 17px;
+    line-height: 1.8;
+    color: var(--slate);
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+}
+
+.service-card {
+    background: var(--white);
+    padding: 60px 40px;
+    transition: var(--transition-slow);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: var(--ink);
+    z-index: -1;
+    transform: translateY(100%);
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.service-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: var(--gold);
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 0.5s ease;
+}
+
+.service-card:hover::before { transform: translateY(0); }
+.service-card:hover::after { transform: scaleY(1); }
+
+.service-card:hover .service-title { color: var(--white); }
+.service-card:hover .service-desc { color: rgba(255,255,255,0.6); }
+.service-card:hover .service-num { color: rgba(255,255,255,0.1); }
+.service-card:hover .service-icon { color: var(--gold); transform: scale(1.1); }
+
+.service-num {
+    position: absolute;
+    top: 40px; right: 40px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 64px;
+    font-weight: 300;
+    color: var(--ghost);
+    line-height: 1;
+    transition: var(--transition-fast);
+}
+
+.service-icon {
+    font-size: 40px;
+    color: var(--gold);
+    margin-bottom: 32px;
+    display: inline-block;
+    transition: var(--transition-slow);
+}
+
+.service-title {
+    font-size: 28px;
+    margin-bottom: 20px;
+    transition: var(--transition-fast);
+}
+
+.service-desc {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--muted);
+    transition: var(--transition-fast);
+}
+
+.service-features {
+    list-style: none;
+    margin-top: 32px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+    transition: var(--transition-fast);
+}
+
+.service-card:hover .service-features {
+    border-color: rgba(255,255,255,0.1);
+}
+
+.service-features li {
+    font-size: 13px;
+    color: var(--slate);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: var(--transition-fast);
+}
+
+.service-card:hover .service-features li { color: rgba(255,255,255,0.8); }
+
+.service-features li i {
+    color: var(--gold);
+    font-size: 14px;
+}
+
+/* ==========================================================================
+   WORK PROCESS SECTION
+   ========================================================================== */
+.process-section {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+}
+
+.process-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    margin-top: 64px;
+}
+
+.process-step {
+    position: relative;
+    padding-top: 40px;
+}
+
+.process-step::before {
+    content: '';
+    position: absolute;
+    top: 15px; left: 0;
+    width: 100%; height: 1px;
+    background: var(--border);
+    z-index: 1;
+}
+
+.process-step:last-child::before { display: none; }
+
+.process-dot {
+    width: 32px; height: 32px;
+    background: var(--white);
+    border: 2px solid var(--gold);
+    border-radius: 50%;
+    position: absolute;
+    top: 0; left: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink);
+}
+
+.process-title {
+    font-size: 22px;
+    margin-bottom: 16px;
+    font-family: 'Cormorant Garamond', serif;
+}
+
+.process-desc {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--muted);
+}
+
+/* ==========================================================================
+   TECH STACK MARQUEE
+   ========================================================================== */
+.tech-section {
+    background: var(--ink);
+    padding: 60px 0;
+    overflow: hidden;
+    width: 100vw !important;
+}
+
+.tech-marquee {
+    display: flex;
+    width: max-content;
+    animation: marquee 30s linear infinite;
+}
+
+.tech-item {
+    font-size: 24px;
+    font-family: 'Cormorant Garamond', serif;
+    color: rgba(255,255,255,0.3);
+    margin: 0 40px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: color 0.3s;
+}
+
+.tech-item:hover { color: var(--gold); }
+.tech-item i { font-size: 32px; }
+
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* ==========================================================================
+   CLIENTS SECTION
+   ========================================================================== */
+.clients-section {
+    background: var(--paper);
+}
+
+.clients-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    margin-top: 64px;
+}
+
+.client-item {
+    background: var(--white);
+    padding: 60px 32px;
+    text-align: center;
+    transition: var(--transition-fast);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 180px;
+}
+
+.client-item:hover {
+    background: var(--gold-pale);
+    transform: scale(1.02);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+    z-index: 2;
+}
+
+.client-logo-placeholder {
+    width: 64px; height: 64px;
+    background: var(--ghost);
+    border-radius: 50%;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: var(--muted);
+    transition: var(--transition-fast);
+}
+
+.client-item:hover .client-logo-placeholder {
+    background: var(--white);
+    color: var(--gold);
+}
+
+.client-name {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--slate);
+    transition: var(--transition-fast);
+}
+
+.client-item:hover .client-name { color: var(--gold); }
+
+/* ==========================================================================
+   TEAM SECTION
+   ========================================================================== */
+.team-section {
+    background: var(--ink);
+    color: var(--white);
+}
+
+.team-section .section-title { color: var(--white); }
+.team-section .section-label { color: var(--gold-light); }
+.team-section .section-label::before { background: var(--gold-light); }
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    margin-top: 80px;
+}
+
+.team-card {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.05);
+    padding: 48px;
+    display: flex;
+    gap: 40px;
+    transition: var(--transition-slow);
+}
+
+.team-card:hover {
+    background: rgba(255,255,255,0.05);
+    border-color: var(--gold);
+    transform: translateY(-5px);
+}
+
+.team-photo {
+    width: 180px;
+    height: 220px;
+    object-fit: cover;
+    filter: grayscale(100%) contrast(1.2);
+    transition: var(--transition-slow);
+}
+
+.team-card:hover .team-photo {
+    filter: grayscale(0%);
+    box-shadow: 10px 10px 0 var(--gold);
+}
+
+.team-info { flex: 1; }
+
+.team-name {
+    font-size: 36px;
+    margin-bottom: 8px;
+    color: var(--white);
+}
+
+.team-title {
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+    display: inline-block;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.team-bio {
+    font-size: 15px;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 24px;
+}
+
+.team-social {
+    display: flex;
+    gap: 16px;
+}
+
+.team-social a {
+    color: rgba(255,255,255,0.3);
+    font-size: 18px;
+    transition: var(--transition-fast);
+}
+
+.team-social a:hover { color: var(--gold); }
+
+/* ==========================================================================
+   FAQ SECTION
+   ========================================================================== */
+.faq-section {
+    background: var(--white);
+}
+
+.faq-container {
+    max-width: 900px;
+    margin: 64px auto 0;
+}
+
+.faq-item {
+    border-bottom: 1px solid var(--border);
+    padding: 32px 0;
+}
+
+.faq-question {
+    font-size: 22px;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    color: var(--ink);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.faq-question:hover { color: var(--gold); }
+
+.faq-icon {
+    font-size: 24px;
+    color: var(--gold);
+    transition: transform 0.4s ease;
+}
+
+.faq-item.active .faq-icon { transform: rotate(45deg); }
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+}
+
+.faq-answer-inner {
+    padding-top: 24px;
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--slate);
+}
+
+/* ==========================================================================
+   CTA BANNER
+   ========================================================================== */
+.cta-banner {
+    background: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1600&auto=format&fit=crop') center/cover fixed;
+    position: relative;
+    padding: 120px 48px;
+    text-align: center;
+}
+
+.cta-banner::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(13,13,13,0.85);
+}
+
+.cta-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.cta-content .section-title { color: var(--white); }
+.cta-desc {
+    font-size: 18px;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 48px;
+    line-height: 1.8;
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+.footer {
+    background: #050505;
+    padding: 100px 48px 40px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    width: 100vw !important;
+}
+
+.footer-inner {
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 80px;
+    margin-bottom: 80px;
+}
+
+.footer-brand-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 400;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 8px;
+}
+
+.footer-brand-name span { color: var(--gold); }
+.footer-brand-name small {
+    display: block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: rgba(255,255,255,0.3);
+    margin-top: 8px;
+}
+
+.footer-desc {
+    font-size: 15px;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 40px;
+    max-width: 400px;
+    margin-top: 32px;
+}
+
+.footer-social { display: flex; gap: 16px; }
+
+.footer-social a {
+    width: 48px; height: 48px;
+    border: 1px solid rgba(255,255,255,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.5);
+    font-size: 18px;
+    border-radius: 50%;
+    transition: var(--transition-fast);
+}
+
+.footer-social a:hover {
+    border-color: var(--gold);
+    color: var(--white);
+    background: var(--gold);
+    transform: translateY(-3px);
+}
+
+.footer-col-title {
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--white);
+    font-weight: 600;
+    margin-bottom: 32px;
+}
+
+.footer-links {
+    list-style: none;
+}
+
+.footer-links li { margin-bottom: 16px; }
+
+.footer-links a {
+    font-size: 14px;
+    color: rgba(255,255,255,0.4);
+    transition: var(--transition-fast);
+    display: inline-block;
+}
+
+.footer-links a:hover {
+    color: var(--gold);
+    transform: translateX(5px);
+}
+
+.footer-contacts { list-style: none; }
+.footer-contacts li { margin-bottom: 24px; }
+.footer-contacts a {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    text-decoration: none;
+}
+
+.contact-icon {
+    color: var(--gold);
+    font-size: 20px;
+    margin-top: 2px;
+}
+
+.contact-text {
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.4);
+    transition: var(--transition-fast);
+}
+
+.footer-contacts a:hover .contact-text { color: var(--white); }
+
+.footer-bottom {
+    padding-top: 40px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+}
+
+.footer-copy {
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    color: rgba(255,255,255,0.3);
+    text-transform: uppercase;
+}
+
+.footer-reg {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+}
+
+.footer-reg span {
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: rgba(255,255,255,0.2);
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+/* ==========================================================================
+   ANIMATIONS
+   ========================================================================== */
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-up {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+.delay-3 { transition-delay: 0.3s; }
+.delay-4 { transition-delay: 0.4s; }
+
+/* ==========================================================================
+   RESPONSIVE DESIGN
+   ========================================================================== */
+@media (max-width: 1200px) {
+    .section-title { font-size: 40px; }
+    .hero-headline { font-size: 64px; }
+    .about-grid { gap: 60px; }
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .clients-grid { grid-template-columns: repeat(3, 1fr); }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 60px; }
+}
+
+@media (max-width: 992px) {
+    .nav-links, .nav-cta { display: none; }
+    .mobile-menu-btn { display: block; }
+    .stats-inner { grid-template-columns: repeat(2, 1fr); }
+    .stat-item { border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .stat-item:nth-child(even) { border-right: none; }
+    .process-grid { grid-template-columns: repeat(2, 1fr); gap: 60px; }
+    .team-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+    .section-padding { padding: 80px 24px; }
+    .nav-inner, .hero-content, .stats-inner { padding-left: 24px; padding-right: 24px; }
+    .hero { padding-top: 120px; }
+    .hero-bg { width: 100%; opacity: 0.15; }
+    .hero-grid-line { display: none; }
+    .hero-headline { font-size: 48px; }
+    .hero-actions { flex-direction: column; align-items: stretch; }
+    .btn-primary-gold, .btn-ghost-dark { width: 100%; }
+    .about-grid { grid-template-columns: 1fr; }
+    .about-img-accent { display: none; }
+    .about-img-main { height: 400px; }
+    .services-header { grid-template-columns: 1fr; gap: 32px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .clients-grid { grid-template-columns: repeat(2, 1fr); }
+    .process-grid { grid-template-columns: 1fr; gap: 40px; }
+    .process-step::before { display: none; }
+    .team-card { flex-direction: column; padding: 32px; gap: 24px; }
+    .team-photo { width: 100%; height: 300px; }
+    .footer-grid { grid-template-columns: 1fr; gap: 48px; }
+    .footer-bottom { flex-direction: column; align-items: flex-start; }
+}
+
+@media (max-width: 480px) {
+    .hero-headline { font-size: 40px; }
+    .stats-inner { grid-template-columns: 1fr; }
+    .stat-item { border-right: none; }
+    .trust-badges { flex-direction: column; }
+    .trust-badge { border-right: none; border-bottom: 1px solid var(--border); }
+    .clients-grid { grid-template-columns: 1fr; }
+}
 </style>
 
-<div class="full-width-section tech-hero text-center text-md-start">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8">
-                <p class="text-info fw-bold letter-spacing-2 mb-2"><i class="bi bi-cpu"></i> NEXT-GEN IT INFRASTRUCTURE</p>
-                <h1 class="hero-title">Muneer Brothers</h1>
-                <h2 class="fw-light text-white mb-4 fs-3">Empowering Technology. Delivering Excellence.</h2>
-                <p class="fs-5 mb-5 text-light opacity-75" style="max-width: 650px; text-align: justify;">
-                    Muneer Brothers (Pvt) Ltd. is a trusted and forward-thinking technology company, proudly registered with the Securities and Exchange Commission of Pakistan (SECP), Pakistan Software Export Board (PSEB), and Pakistan Software Houses Association for IT & ITES (P@SHA). Since 2008, we have been delivering innovative, reliable, and high-quality IT and technology solutions, empowering businesses to grow in a rapidly evolving digital world. With a strong commitment to excellence, professionalism, and customer satisfaction, Muneer Brothers stands as a symbol of trust, innovation, and technological leadership in Pakistan’s IT industry.
-                </p>
-                <a href="#services" class="btn btn-neon me-3 mb-2">Explore Solutions</a>
-                <a href="{{ url_for('routes.contact') }}" class="btn btn-outline-light btn-lg px-4 rounded-0 fw-bold letter-spacing-1 mb-2">Contact Command Center</a>
-            </div>
+<nav class="nav-premium" id="navbar">
+    <div class="nav-inner">
+        <a href="#" class="nav-logo">
+            Muneer <span>Brothers</span>
+            <small>(Pvt) Ltd.</small>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#about">Company</a></li>
+            <li><a href="#services">Expertise</a></li>
+            <li><a href="#process">Process</a></li>
+            <li><a href="#clients">Our Clinets</a></li>
+            <li><a href="#team">Our Core Experts</a></li>
+        </ul>
+        <a href="{{ url_for('routes.contact') | default('#contact') }}" class="btn-primary-gold nav-cta" style="padding: 14px 32px;">Consult Us</a>
+        <button class="mobile-menu-btn"><i class="bi bi-list"></i></button>
+    </div>
+</nav>
+
+<section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid-line"></div>
+    <div class="hero-content">
+        <div class="section-label fade-up">Enterprise Technology Leaders</div>
+        <h1 class="hero-headline fade-up delay-1">
+            Technology<br>
+            <span style="padding-left: 5vw;">Built for <em>Excellence.</em></span>
+        </h1>
+        <p class="hero-body fade-up delay-2">
+            Muneer Brothers (Pvt) Ltd. delivers innovative, reliable, and highly scalable IT solutions to enterprises, government institutions, and modern businesses across Pakistan. With over a decade of proven expertise, we turn complex challenges into seamless infrastructure.
+        </p>
+        <div class="hero-actions fade-up delay-3">
+            <a href="#services" class="btn-primary-gold">Explore Solutions <i class="bi bi-arrow-right"></i></a>
+            <a href="#contact" class="btn-ghost-dark">Speak to an Expert</a>
+        </div>
+        <div class="hero-badges fade-up delay-4">
+            <div class="hero-badge"><i class="bi bi-shield-fill-check"></i> SECP Registered</div>
+            <div class="hero-badge"><i class="bi bi-award-fill"></i> PSEB Certified</div>
+            <div class="hero-badge"><i class="bi bi-hdd-network-fill"></i> P@SHA Member</div>
         </div>
     </div>
-</div>
+</section>
 
-<div class="full-width-section stats-section text-center">
-    <div class="container">
-        <div class="row g-4">
-            <div class="col-md-4">
-                <div class="stat-number">20+</div>
-                <div class="text-uppercase tracking-wider fw-bold text-secondary mt-2">Years of Innovation</div>
-            </div>
-            <div class="col-md-4">
-                <div class="stat-number">500+</div>
-                <div class="text-uppercase tracking-wider fw-bold text-secondary mt-2">Enterprise Deployments</div>
-            </div>
-            <div class="col-md-4">
-                <div class="stat-number">100%</div>
-                <div class="text-uppercase tracking-wider fw-bold text-secondary mt-2">Secure Infrastructure</div>
-            </div>
+<section class="stats-strip">
+    <div class="stats-inner">
+        <div class="stat-item fade-up">
+            <div class="stat-num counter" data-target="16">0<span>+</span></div>
+            <div class="stat-label">Years of Trust</div>
+        </div>
+        <div class="stat-item fade-up delay-1">
+            <div class="stat-num counter" data-target="500">0<span>+</span></div>
+            <div class="stat-label">Enterprise Deployments</div>
+        </div>
+        <div class="stat-item fade-up delay-2">
+            <div class="stat-num counter" data-target="50">0<span>+</span></div>
+            <div class="stat-label">Tech Experts</div>
+        </div>
+        <div class="stat-item fade-up delay-3">
+            <div class="stat-num">100<span>%</span></div>
+            <div class="stat-label">Secure Infrastructure</div>
         </div>
     </div>
-</div>
+</section>
 
-<div class="full-width-section services-bg" id="services">
-    <div class="container">
-        <div class="text-center mb-5">
-            <h2 class="hero-title" style="font-size: 2.5rem;">Core Technologies</h2>
-            <p class="text-secondary fs-5">Advanced solutions tailored for modern organizational architecture.</p>
+<section class="about-section section-padding" id="about">
+    <div class="inner-container about-grid">
+        <div class="fade-up">
+            <div class="section-label">Our Heritage</div>
+            <h2 class="section-title">Pakistan's Premier Technology Partner</h2>
+            <p class="about-body">
+                Since our inception, Muneer Brothers (Pvt) Ltd. has stood at the forefront of digital transformation in Pakistan. We specialize in architecting environments that demand zero downtime, absolute security, and limitless scalability.
+            </p>
+            <p class="about-body">
+                Our legacy is built on a foundation of trust. From deploying sensitive government infrastructures to empowering top-tier universities and healthcare facilities, we bring a boutique level of care to enterprise-grade execution.
+            </p>
+            <div class="trust-badges">
+                <div class="trust-badge">Innovation</div>
+                <div class="trust-badge">Security</div>
+                <div class="trust-badge">Reliability</div>
+            </div>
+            <div style="margin-top: 40px;">
+                <a href="#team" class="btn-ghost-dark">Meet Our Leadership</a>
+            </div>
         </div>
-        <div class="row g-4">
-            {% if services %}
-                {% for ser in services %}
-                <div class="col-lg-4 col-md-6">
-                    <div class="glass-card">
-                        <img src="{{ url_for('static', filename='uploads/' + ser.image) if ser.image else 'https://images.unsplash.com/photo-1498050108023-c5249f4df085' }}" class="service-img">
-                        <h4 class="fw-bold text-white mb-3"><i class="bi bi-gear-fill text-info me-2"></i> {{ ser.title }}</h4>
-                        <p class="text-secondary">{{ ser.description }}</p>
-                    </div>
-                </div>
-                {% endfor %}
-            {% else %}
-                <div class="col-lg-4 col-md-6"><div class="glass-card"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085" class="service-img"><h4 class="fw-bold text-white mb-3">Software Engineering</h4><p class="text-secondary">Custom-built applications and scalable APIs.</p></div></div>
-                <div class="col-lg-4 col-md-6"><div class="glass-card"><img src="https://images.unsplash.com/photo-1557597774-9d273605dfa9" class="service-img"><h4 class="fw-bold text-white mb-3">Surveillance Systems</h4><p class="text-secondary">Advanced CCTV networks and monitoring solutions.</p></div></div>
-                <div class="col-lg-4 col-md-6"><div class="glass-card"><img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31" class="service-img"><h4 class="fw-bold text-white mb-3">Data Networking</h4><p class="text-secondary">High-speed LAN/WAN and fiber optic setups.</p></div></div>
-                <div class="col-lg-4 col-md-6"><div class="glass-card"><img src="https://images.unsplash.com/photo-1517433670267-08bbd4be890f" class="service-img"><h4 class="fw-bold text-white mb-3">Enterprise Hardware</h4><p class="text-secondary">Supply of high-tier servers and workstations.</p></div></div>
-                <div class="col-lg-4 col-md-6"><div class="glass-card"><img src="https://images.unsplash.com/photo-1509391366360-2e959784a276" class="service-img"><h4 class="fw-bold text-white mb-3">Solar Integration</h4><p class="text-secondary">Reliable energy powering IT infrastructure.</p></div></div>
-                <div class="col-lg-4 col-md-6"><div class="glass-card"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71" class="service-img"><h4 class="fw-bold text-white mb-3">IT Order Solutions</h4><p class="text-secondary">Customized digital workflow systems.</p></div></div>
-            {% endif %}
+        <div class="about-visual fade-up delay-2">
+            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800&auto=format&fit=crop" class="about-img-main" alt="Muneer Brothers (Pvt) Ltd Corporate Office">
+            <div class="about-year-tag">
+                <div class="year">2008</div>
+                <small>Established</small>
+            </div>
+            <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=400&auto=format&fit=crop" class="about-img-accent" alt="Server Infrastructure">
         </div>
     </div>
-</div>
+</section>
 
-<div class="full-width-section client-grid">
-    <div class="container">
-        <div class="text-center mb-5">
-            <h3 class="fw-bold text-white"><span class="text-info">|</span> Strategic Partners & Deployments</h3>
-        </div>
-        <div class="row g-3">
-            <div class="col-lg-3 col-md-4 col-6"><div class="client-logo">KRL Hospital</div></div>
-            <div class="col-lg-3 col-md-4 col-6"><div class="client-logo">Hazara University</div></div>
-            <div class="col-lg-3 col-md-4 col-6"><div class="client-logo">UN Office Islamabad</div></div>
-            <div class="col-lg-3 col-md-4 col-6"><div class="client-logo">District Judiciary KPK</div></div>
-            <div class="col-lg-3 col-md-4 col-6"><div class="client-logo">Police Lines KPK</div></div>
-            <div class="col-lg-3 col-md-4 col-6"><div class="client-logo">Steella Technology</div></div>
-            <div class="col-lg-3 col-md-4 col-6"><div class="client-logo">University of Haripur</div></div>
-            <div class="col-lg-3 col-md-4 col-6"><div class="client-logo">BISE Abbottabad</div></div>
-        </div>
-    </div>
-</div>
-
-<div class="full-width-section services-bg" style="border-top: 1px solid rgba(255,255,255,0.05);">
-    <div class="container">
-        <div class="text-center mb-5">
-            <h2 class="hero-title" style="font-size: 2.5rem;">Our Core Experts</h2>
-            <p class="text-secondary fs-5">Meet the professionals driving our seamless operations.</p>
-        </div>
-        <div class="row justify-content-center g-4">
-            {% for emp in employees %}
-            <div class="col-lg-10">
-                <div class="glass-card d-flex flex-column flex-md-row align-items-center gap-4 p-4 text-center text-md-start">
-                    <div class="flex-shrink-0">
-                        <img src="{{ url_for('static', filename='uploads/' + emp.image_file) }}" class="rounded-circle border border-3 border-info" style="width: 150px; height: 150px; object-fit: cover; box-shadow: 0 0 20px rgba(0, 242, 254, 0.3);">
-                    </div>
-                    <div>
-                        <h3 class="text-white fw-bold mb-1">{{ emp.name }}</h3>
-                        <h6 class="text-info mb-3 letter-spacing-1 text-uppercase"><i class="bi bi-person-badge me-2"></i>{{ emp.designation }}</h6>
-                        <p class="text-secondary mb-0" style="font-size: 16px; line-height: 1.6; text-align: justify;">{{ emp.description }}</p>
-                    </div>
-                </div>
+<section class="services-section section-padding" id="services">
+    <div class="inner-container">
+        <div class="services-header fade-up">
+            <div>
+                <div class="section-label">Core Capabilities</div>
+                <h2 class="section-title">Advanced IT<br><em>Solutions</em></h2>
             </div>
-            {% endfor %}
+            <div class="services-intro">
+                Muneer Brothers (Pvt) Ltd. engineers end-to-end ecosystems. We don't just sell hardware or write code; we design resilient technological foundations that drive institutional success and operational supremacy.
+            </div>
         </div>
-    </div>
-</div>
-
-<div class="full-width-section footer-tech text-start">
-    <div class="container">
-        <div class="row g-5">
-            <div class="col-lg-4">
-                <h4 class="mb-4">MUNEER BROTHERS</h4>
-                <p class="mb-4">Transforming the technological footprint of Pakistan through innovation, security, and uncompromising quality.</p>
-                <div class="d-flex gap-3">
-                    <a href="https://linkedin.com" target="_blank" class="fs-4"><i class="bi bi-linkedin"></i></a>
-                    <a href="https://twitter.com" target="_blank" class="fs-4"><i class="bi bi-twitter-x"></i></a>
-                    <a href="https://facebook.com" target="_blank" class="fs-4"><i class="bi bi-facebook"></i></a>
-                </div>
+        <div class="services-grid">
+            <div class="service-card fade-up">
+                <i class="bi bi-hdd-network service-icon"></i>
+                <div class="service-num">01</div>
+                <h3 class="service-title">Enterprise Infrastructure</h3>
+                <p class="service-desc">Architecting robust, high-availability hardware environments tailored for mission-critical institutional operations.</p>
+                <ul class="service-features">
+                    <li><i class="bi bi-check2"></i> Data Center Design & Deployment</li>
+                    <li><i class="bi bi-check2"></i> High-Performance Server Racks</li>
+                    <li><i class="bi bi-check2"></i> Enterprise Routing & Switching</li>
+                </ul>
             </div>
-            <div class="col-lg-4">
-                <h5 class="text-white fw-bold mb-4">Command Centers</h5>
-                {% if offices %}
-                    {% for off in offices %}
-                    <div class="mb-3"><strong class="text-info">{{ off.office_type }}:</strong><br><span class="text-secondary">{{ off.address }}</span></div>
-                    {% endfor %}
-                {% else %}
-                    <div class="mb-3"><strong class="text-info">HQ:</strong><br>Office No. 3, Satellite Center, Sixth Road, Rawalpindi</div>
-                    <div class="mb-3"><strong class="text-info">Branch:</strong><br>Office No. 57, Main Bazaar, Battagram</div>
-                {% endif %}
+            <div class="service-card fade-up delay-1">
+                <i class="bi bi-code-square service-icon"></i>
+                <div class="service-num">02</div>
+                <h3 class="service-title">Software Engineering</h3>
+                <p class="service-desc">Developing bespoke, scalable applications and enterprise resource planning (ERP) systems from the ground up.</p>
+                <ul class="service-features">
+                    <li><i class="bi bi-check2"></i> Custom ERP & CRM Solutions</li>
+                    <li><i class="bi bi-check2"></i> Web & Mobile Applications</li>
+                    <li><i class="bi bi-check2"></i> Legacy System Modernization</li>
+                </ul>
             </div>
-            <div class="col-lg-4">
-                <h5 class="text-white fw-bold mb-4">Encrypted Comms</h5>
-                <ul class="list-unstyled">
-                    <li class="mb-3"><a href="https://wa.me/923009191079" target="_blank" class="text-decoration-none"><i class="bi bi-whatsapp text-info me-3 fs-5"></i> <span class="text-secondary">0300-9191079</span></a></li>
-                    <li class="mb-3"><a href="mailto:info@muneerbrothers.com" class="text-decoration-none"><i class="bi bi-envelope text-info me-3 fs-5"></i> <span class="text-secondary">info@muneerbrothers.com</span></a></li>
-                    <li class="mb-3"><a href="https://www.muneerbrothers.com" target="_blank" class="text-decoration-none"><i class="bi bi-globe text-info me-3 fs-5"></i> <span class="text-secondary">www.muneerbrothers.com</span></a></li>
+            <div class="service-card fade-up delay-2">
+                <i class="bi bi-shield-check service-icon"></i>
+                <div class="service-num">03</div>
+                <h3 class="service-title">Cybersecurity Defense</h3>
+                <p class="service-desc">Implementing military-grade security protocols, intelligent threat detection, and comprehensive network auditing.</p>
+                <ul class="service-features">
+                    <li><i class="bi bi-check2"></i> Next-Gen Firewalls (NGFW)</li>
+                    <li><i class="bi bi-check2"></i> Vulnerability Assessments</li>
+                    <li><i class="bi bi-check2"></i> Zero-Trust Architecture</li>
+                </ul>
+            </div>
+            <div class="service-card fade-up">
+                <i class="bi bi-cloud-arrow-up service-icon"></i>
+                <div class="service-num">04</div>
+                <h3 class="service-title">Cloud Transformation</h3>
+                <p class="service-desc">Seamlessly migrating and managing your workloads across public, private, or hybrid cloud environments.</p>
+                <ul class="service-features">
+                    <li><i class="bi bi-check2"></i> AWS / Azure / GCP Migration</li>
+                    <li><i class="bi bi-check2"></i> Cloud Cost Optimization</li>
+                    <li><i class="bi bi-check2"></i> Disaster Recovery (DRaaS)</li>
+                </ul>
+            </div>
+            <div class="service-card fade-up delay-1">
+                <i class="bi bi-cpu service-icon"></i>
+                <div class="service-num">05</div>
+                <h3 class="service-title">AI & Automation</h3>
+                <p class="service-desc">Integrating artificial intelligence to automate complex workflows and derive actionable insights from massive data.</p>
+                <ul class="service-features">
+                    <li><i class="bi bi-check2"></i> Machine Learning Models</li>
+                    <li><i class="bi bi-check2"></i> Robotic Process Automation (RPA)</li>
+                    <li><i class="bi bi-check2"></i> Predictive Analytics Dashboards</li>
+                </ul>
+            </div>
+            <div class="service-card fade-up delay-2">
+                <i class="bi bi-headset service-icon"></i>
+                <div class="service-num">06</div>
+                <h3 class="service-title">Managed IT Services</h3>
+                <p class="service-desc">24/7 proactive monitoring, dedicated SLA-backed support, and continuous system optimization for peace of mind.</p>
+                <ul class="service-features">
+                    <li><i class="bi bi-check2"></i> 24/7/365 NOC & SOC</li>
+                    <li><i class="bi bi-check2"></i> IT Asset Management</li>
+                    <li><i class="bi bi-check2"></i> On-site & Remote Support</li>
                 </ul>
             </div>
         </div>
-        <hr class="mt-5 mb-4" style="border-color: rgba(255,255,255,0.1);">
-        <div class="text-center" style="font-family: 'Orbitron', sans-serif; font-size: 12px;">
-            <i class="bi bi-shield-check text-info"></i> SYSTEM SECURE. COPYRIGHT © 2026 MUNEER BROTHERS (PVT) LTD.
+    </div>
+</section>
+
+<section class="process-section section-padding" id="process">
+    <div class="inner-container">
+        <div class="text-center fade-up">
+            <div class="section-label justify-center">Methodology</div>
+            <h2 class="section-title">How We Deliver Excellence</h2>
+        </div>
+        <div class="process-grid">
+            <div class="process-step fade-up">
+                <div class="process-dot">1</div>
+                <h4 class="process-title">Discovery</h4>
+                <p class="process-desc">Deep-dive audits into your current infrastructure, identifying bottlenecks, security gaps, and operational goals.</p>
+            </div>
+            <div class="process-step fade-up delay-1">
+                <div class="process-dot">2</div>
+                <h4 class="process-title">Architecture</h4>
+                <p class="process-desc">Engineering a tailored blueprint. We select the optimal hardware and software stacks to ensure future-proof scalability.</p>
+            </div>
+            <div class="process-step fade-up delay-2">
+                <div class="process-dot">3</div>
+                <h4 class="process-title">Deployment</h4>
+                <p class="process-desc">Rigorous, zero-downtime implementation executed by certified engineers, adhering to global compliance standards.</p>
+            </div>
+            <div class="process-step fade-up delay-3">
+                <div class="process-dot">4</div>
+                <h4 class="process-title">Optimization</h4>
+                <p class="process-desc">Continuous monitoring, proactive patching, and 24/7 dedicated support to maintain peak operational efficiency.</p>
+            </div>
         </div>
     </div>
+</section>
+
+<div class="tech-section">
+    <div class="tech-marquee">
+        <div class="tech-item"><i class="bi bi-microsoft"></i> Microsoft</div>
+        <div class="tech-item"><i class="bi bi-ubuntu"></i> Linux</div>
+        <div class="tech-item"><i class="bi bi-router"></i> Cisco</div>
+        <div class="tech-item"><i class="bi bi-shield-lock"></i> Fortinet</div>
+        <div class="tech-item"><i class="bi bi-database"></i> Oracle</div>
+        <div class="tech-item"><i class="bi bi-amazon"></i> AWS</div>
+        <div class="tech-item"><i class="bi bi-microsoft"></i> Microsoft</div>
+        <div class="tech-item"><i class="bi bi-ubuntu"></i> Linux</div>
+        <div class="tech-item"><i class="bi bi-router"></i> Cisco</div>
+        <div class="tech-item"><i class="bi bi-shield-lock"></i> Fortinet</div>
+        <div class="tech-item"><i class="bi bi-database"></i> Oracle</div>
+        <div class="tech-item"><i class="bi bi-amazon"></i> AWS</div>
+        <div class="tech-item"><i class="bi bi-microsoft"></i> Microsoft</div>
+        <div class="tech-item"><i class="bi bi-ubuntu"></i> Linux</div>
+        <div class="tech-item"><i class="bi bi-router"></i> Cisco</div>
+        <div class="tech-item"><i class="bi bi-shield-lock"></i> Fortinet</div>
+        <div class="tech-item"><i class="bi bi-database"></i> Oracle</div>
+        <div class="tech-item"><i class="bi bi-amazon"></i> AWS</div>
+    </div>
 </div>
+
+<section class="clients-section section-padding" id="clients">
+    <div class="inner-container">
+        <div class="text-center fade-up">
+            <div class="section-label justify-center">Our Clients</div>
+            <h2 class="section-title">Trusted by the Best</h2>
+            <p class="about-body mx-auto text-center" style="max-width: 600px;">
+                Muneer Brothers (Pvt) Ltd. is the vendor of choice for organizations where failure is not an option. Our portfolio spans the public and private sectors.
+            </p>
+        </div>
+        <div class="clients-grid">
+            <div class="client-item fade-up">
+                <div class="client-logo-placeholder"><i class="bi bi-globe"></i></div>
+                <span class="client-name">United Nations</span>
+            </div>
+            <div class="client-item fade-up delay-1">
+                <div class="client-logo-placeholder"><i class="bi bi-bank"></i></div>
+                <span class="client-name">Gov. of Pakistan</span>
+            </div>
+            <div class="client-item fade-up delay-2">
+                <div class="client-logo-placeholder"><i class="bi bi-heart-pulse"></i></div>
+                <span class="client-name">Leading Hospitals</span>
+            </div>
+            <div class="client-item fade-up delay-3">
+                <div class="client-logo-placeholder"><i class="bi bi-mortarboard"></i></div>
+                <span class="client-name">Top Universities</span>
+            </div>
+            <div class="client-item fade-up">
+                <div class="client-logo-placeholder"><i class="bi bi-buildings"></i></div>
+                <span class="client-name">Corporate Enterprises</span>
+            </div>
+            <div class="client-item fade-up delay-1">
+                <div class="client-logo-placeholder"><i class="bi bi-cash-coin"></i></div>
+                <span class="client-name">Financial Sector</span>
+            </div>
+            <div class="client-item fade-up delay-2">
+                <div class="client-logo-placeholder"><i class="bi bi-shield-shaded"></i></div>
+                <span class="client-name">Defense Sector</span>
+            </div>
+            <div class="client-item fade-up delay-3">
+                <div class="client-logo-placeholder"><i class="bi bi-rocket-takeoff"></i></div>
+                <span class="client-name">Tech Startups</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="team-section section-padding" id="team">
+    <div class="inner-container">
+        <div class="fade-up">
+            <div class="section-label">Leadership</div>
+            <h2 class="section-title">The Minds Behind the Tech</h2>
+            <p class="about-body" style="color: rgba(255,255,255,0.6); max-width: 600px;">
+                Led by industry veterans, the executive team at Muneer Brothers (Pvt) Ltd. is dedicated to pushing the boundaries of technological innovation in Pakistan.
+            </p>
+        </div>
+        <div class="team-grid">
+            
+            {% for employee in employees %}
+            <div class="team-card fade-up delay-{{ loop.index0 % 4 }}">
+                <img src="{{ url_for('static', filename='uploads/' ~ employee.image_file) }}" class="team-photo" alt="{{ employee.name }}">
+                <div class="team-info">
+                    <h3 class="team-name">{{ employee.name }}</h3>
+                    <div class="team-title">{{ employee.designation }}</div>
+                    <p class="team-bio">{{ employee.description }}</p>
+                    <div class="team-social">
+                        <a href="#"><i class="bi bi-linkedin"></i></a>
+                        <a href="#"><i class="bi bi-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <p style="color: rgba(255,255,255,0.5);">No leadership members added yet. Please add them from the admin panel.</p>
+            {% endfor %}
+            
+        </div>
+    </div>
+</section>            
+           
+    </div>
+</section>
+
+<section class="faq-section section-padding">
+    <div class="inner-container">
+        <div class="text-center fade-up">
+            <div class="section-label justify-center">Knowledge Base</div>
+            <h2 class="section-title">Common Inquiries</h2>
+        </div>
+        <div class="faq-container">
+            <div class="faq-item fade-up">
+                <div class="faq-question">
+                    What sets Muneer Brothers (Pvt) Ltd. apart from other IT vendors?
+                    <i class="bi bi-plus faq-icon"></i>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        Unlike standard vendors, we act as holistic technology partners. We provide end-to-end solutions, from hardware procurement and network architecture to custom software development and ongoing managed services. Our SECP, PSEB, and P@SHA certifications further validate our commitment to elite standards.
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item fade-up delay-1">
+                <div class="faq-question">
+                    Do you provide IT support outside of Islamabad?
+                    <i class="bi bi-plus faq-icon"></i>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        Yes, while headquartered in Islamabad, Muneer Brothers (Pvt) Ltd. deploys and supports enterprise infrastructure across all major cities in Pakistan. We have a robust network of certified engineers ready for remote and on-site deployments nationwide.
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item fade-up delay-2">
+                <div class="faq-question">
+                    Are your cybersecurity solutions compliant with local regulations?
+                    <i class="bi bi-plus faq-icon"></i>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        Absolutely. We design security architectures that strictly adhere to national cybersecurity frameworks, State Bank of Pakistan regulations (for financial clients), and international ISO/IEC 27001 standards.
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item fade-up delay-3">
+                <div class="faq-question">
+                    Can you modernize our legacy ERP systems?
+                    <i class="bi bi-plus faq-icon"></i>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        Yes. Our software engineering division specializes in auditing legacy systems, extracting historical data safely, and migrating operations to modern, cloud-native ERPs or bespoke software tailored specifically to your workflow.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta-banner">
+    <div class="cta-content fade-up">
+        <h2 class="section-title">Ready to Elevate Your Infrastructure?</h2>
+        <p class="cta-desc">Partner with Muneer Brothers (Pvt) Ltd. to secure, scale, and streamline your technological capabilities.</p>
+        <a href="{{ url_for('routes.contact') | default('#contact') }}" class="btn-primary-gold" style="font-size: 14px; padding: 20px 56px;">Schedule a Consultation</a>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="footer-grid">
+            <div class="fade-up">
+                <div class="footer-brand-name">
+                    Muneer <span>Brothers</span>
+                    <small>(Pvt) Ltd.</small>
+                </div>
+                <p class="footer-desc">Empowering organizations across Pakistan with enterprise-grade IT infrastructure, custom software development, and uncompromising technology services since 2008.</p>
+                <div class="footer-social">
+                    <a href="#"><i class="bi bi-linkedin"></i></a>
+                    <a href="#"><i class="bi bi-twitter-x"></i></a>
+                    <a href="#"><i class="bi bi-facebook"></i></a>
+                    <a href="#"><i class="bi bi-github"></i></a>
+                </div>
+            </div>
+            
+            <div class="fade-up delay-1">
+                <div class="footer-col-title">Company</div>
+                <ul class="footer-links">
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#team">Leadership Team</a></li>
+                    <li><a href="#clients">Our Clients</a></li>
+                    <li><a href="#careers">Careers</a></li>
+                    <li><a href="#news">Tech Insights</a></li>
+                </ul>
+            </div>
+            
+            <div class="fade-up delay-2">
+                <div class="footer-col-title">Solutions</div>
+                <ul class="footer-links">
+                    <li><a href="#services">IT Infrastructure</a></li>
+                    <li><a href="#services">Software Engineering</a></li>
+                    <li><a href="#services">Cybersecurity Defense</a></li>
+                    <li><a href="#services">Cloud Integration</a></li>
+                    <li><a href="#services">Managed Services</a></li>
+                </ul>
+            </div>
+            
+            <div class="fade-up delay-3">
+                <div class="footer-col-title">Headquarters</div>
+                <ul class="footer-contacts">
+                    <li>
+                        <a href="#">
+                            <i class="bi bi-geo-alt contact-icon"></i>
+                            <span class="contact-text">Blue Area, Islamabad,<br>Capital Territory, Pakistan</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="mailto:info@muneerbrothers.com">
+                            <i class="bi bi-envelope contact-icon"></i>
+                            <span class="contact-text">info@muneerbrothers.com</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="tel:+92510000000">
+                            <i class="bi bi-telephone contact-icon"></i>
+                            <span class="contact-text">+92 51 0000000</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom fade-up delay-4">
+            <div class="footer-copy">&copy; 2026 Muneer Brothers (Pvt) Ltd. All rights reserved.</div>
+            <div class="footer-reg">
+                <span><i class="bi bi-check-circle" style="color: var(--gold); margin-right: 5px;"></i> SECP Registered</span>
+                <span><i class="bi bi-check-circle" style="color: var(--gold); margin-right: 5px;"></i> PSEB Certified</span>
+                <span><i class="bi bi-check-circle" style="color: var(--gold); margin-right: 5px;"></i> P@SHA Member</span>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    
+    // 1. Navbar Scroll Effect
+    const navbar = document.getElementById("navbar");
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > 50) {
+            navbar.classList.add("scrolled");
+        } else {
+            navbar.classList.remove("scrolled");
+        }
+    });
+
+    // 2. Scroll Animation (Intersection Observer)
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.15
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target); // Run once
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-up').forEach((el) => {
+        observer.observe(el);
+    });
+
+    // 3. Counter Animation
+    const counters = document.querySelectorAll('.counter');
+    const counterObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const target = +entry.target.getAttribute('data-target');
+                const duration = 2000; // 2 seconds
+                const increment = target / (duration / 16); // 60fps
+                let current = 0;
+
+                const updateCounter = () => {
+                    current += increment;
+                    if (current < target) {
+                        entry.target.innerHTML = Math.ceil(current) + '<span>+</span>';
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        entry.target.innerHTML = target + '<span>+</span>';
+                    }
+                };
+                
+                updateCounter();
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    counters.forEach(counter => {
+        counterObserver.observe(counter);
+    });
+
+    // 4. FAQ Accordion
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        const answer = item.querySelector('.faq-answer');
+        
+        question.addEventListener('click', () => {
+            const isActive = item.classList.contains('active');
+            
+            // Close all others
+            faqItems.forEach(otherItem => {
+                otherItem.classList.remove('active');
+                otherItem.querySelector('.faq-answer').style.maxHeight = null;
+            });
+            
+            if (!isActive) {
+                item.classList.add('active');
+                answer.style.maxHeight = answer.scrollHeight + "px";
+            }
+        });
+    });
+
+    // 5. Mobile Menu Toggle (Basic implementation)
+    const mobileBtn = document.querySelector('.mobile-menu-btn');
+    const navLinks = document.querySelector('.nav-links');
+    
+    mobileBtn.addEventListener('click', () => {
+        if(navLinks.style.display === 'flex') {
+            navLinks.style.display = 'none';
+        } else {
+            navLinks.style.display = 'flex';
+            navLinks.style.flexDirection = 'column';
+            navLinks.style.position = 'absolute';
+            navLinks.style.top = '100%';
+            navLinks.style.left = '0';
+            navLinks.style.width = '100%';
+            navLinks.style.background = '#ffffff';
+            navLinks.style.padding = '20px 48px';
+            navLinks.style.borderBottom = '1px solid #e8e4dd';
+        }
+    });
+
+});
+</script>
+
 {% endblock %}

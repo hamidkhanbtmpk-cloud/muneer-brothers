@@ -1,87 +1,162 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
 <style>
-    body {
-        background-color: #050505;
-        color: #ffffff;
-        font-family: 'Rajdhani', sans-serif;
+    :root {
+        --ink: #0d0d0d;
+        --slate: #3a3a3a;
+        --muted: #8a8a8a;
+        --paper: #faf8f5;
+        --white: #ffffff;
+        --gold: #b8975a;
+        --border: #e8e4dd;
     }
-    .contact-container {
-        padding: 100px 0;
+
+    .contact-section {
+        background-color: var(--paper);
+        padding: 120px 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        font-family: 'DM Sans', sans-serif;
     }
-    .glass-card {
-        background: rgba(255, 255, 255, 0.02);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(0, 242, 254, 0.2);
-        border-radius: 12px;
-        padding: 40px;
+
+    .contact-card {
+        background: var(--white);
+        border: 1px solid var(--border);
+        padding: 64px 56px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.03);
     }
-    .hero-title-sm {
-        font-family: 'Orbitron', sans-serif;
-        background: -webkit-linear-gradient(#00f2fe, #4facfe);
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
+
+    .contact-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 3px;
         text-transform: uppercase;
-        margin-bottom: 30px;
+        color: var(--gold);
+        margin-bottom: 24px;
     }
-    .form-control {
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        color: white;
-        padding: 12px;
-        margin-bottom: 20px;
+
+    .contact-eyebrow::before {
+        content: '';
+        display: block;
+        width: 32px;
+        height: 1px;
+        background: var(--gold);
     }
-    .form-control:focus {
-        background: rgba(255, 255, 255, 0.1);
-        border-color: #00f2fe;
-        color: white;
-        box-shadow: 0 0 10px rgba(0, 242, 254, 0.3);
+
+    .contact-title {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 44px;
+        font-weight: 300;
+        color: var(--ink);
+        margin-bottom: 40px;
+        line-height: 1.2;
     }
-    .btn-neon {
-        background: transparent;
-        color: #00f2fe;
-        border: 2px solid #00f2fe;
-        box-shadow: 0 0 10px rgba(0, 242, 254, 0.4);
-        font-weight: 700;
+
+    .form-label-custom {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 2px;
         text-transform: uppercase;
+        color: var(--slate);
+        margin-bottom: 12px;
+        display: block;
+    }
+
+    .form-control-custom {
+        background: var(--white);
+        border: 1px solid var(--border);
+        color: var(--ink);
+        padding: 16px 20px;
+        font-size: 14px;
         width: 100%;
-        padding: 15px;
-        transition: 0.4s;
+        margin-bottom: 28px;
+        transition: all 0.3s;
+        border-radius: 0; /* Flat, elegant look */
     }
-    .btn-neon:hover {
-        background: #00f2fe;
-        color: #000;
-        box-shadow: 0 0 25px rgba(0, 242, 254, 0.8);
+
+    .form-control-custom:focus {
+        outline: none;
+        border-color: var(--gold);
+        box-shadow: none;
+    }
+
+    .form-control-custom::placeholder {
+        color: var(--muted);
+        opacity: 0.6;
+        font-weight: 300;
+    }
+
+    .btn-gold-submit {
+        font-family: 'DM Sans', sans-serif;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--white);
+        background: var(--ink);
+        border: none;
+        padding: 18px 40px;
+        cursor: pointer;
+        width: 100%;
+        transition: all 0.3s;
+        margin-top: 10px;
+    }
+
+    .btn-gold-submit:hover {
+        background: var(--gold);
+        color: var(--white);
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+        .contact-section {
+            padding: 80px 16px;
+        }
+        .contact-card {
+            padding: 40px 24px;
+        }
+        .contact-title {
+            font-size: 36px;
+        }
     }
 </style>
 
-<div class="container contact-container">
-    <div class="row justify-content-center">
-        <div class="col-lg-8">
-            <div class="glass-card">
-                <h2 class="hero-title-sm text-center">Contact Command Center</h2>
-                <form method="POST" action="{{ url_for('routes.contact') }}">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label class="text-info small mb-2 text-uppercase fw-bold">Your Name</label>
-                            <input type="text" name="name" class="form-control" placeholder="Hamid Khan" required>
+<div class="contact-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="contact-card">
+                    <div class="contact-eyebrow">Reach Out</div>
+                    <h2 class="contact-title">Let's build something <br><em>exceptional</em> together.</h2>
+                    
+                    <form method="POST" action="{{ url_for('routes.contact') }}">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="form-label-custom">Your Name</label>
+                                <input type="text" name="name" class="form-control-custom" placeholder="Hamid Khan" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label-custom">Email Address</label>
+                                <input type="email" name="email" class="form-control-custom" placeholder="name@example.com" required>
+                            </div>
                         </div>
-                        <div class="col-md-6">
-                            <label class="text-info small mb-2 text-uppercase fw-bold">Email Address</label>
-                            <input type="email" name="email" class="form-control" placeholder="name@example.com" required>
+                        
+                        <div>
+                            <label class="form-label-custom">Your Message</label>
+                            <textarea name="message" class="form-control-custom" rows="6" placeholder="How can we help you?" required></textarea>
                         </div>
-                    </div>
-                    <div class="mb-4">
-                        <label class="text-info small mb-2 text-uppercase fw-bold">Message Payload</label>
-                        <textarea name="message" class="form-control" rows="6" placeholder="Transmission details..." required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-neon">Transmit Signal</button>
-                </form>
+                        
+                        <button type="submit" class="btn-gold-submit">Send Message</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
